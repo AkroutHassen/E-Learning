@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Admin.layouts.template');
+});
+Route::get('/Enseignants', function () {
+    return view('Enseignants.layouts.template');
+});
+Route::get('/Etudiants', function () {
+    return view('Etudiants.layouts.template');
 });
