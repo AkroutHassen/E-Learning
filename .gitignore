@@ -5,6 +5,7 @@
 /public/build
 /public/plugins
 /public/dist
+/database/migrations
 /storage/*.key
 /vendor
 .env

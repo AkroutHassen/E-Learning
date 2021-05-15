@@ -135,7 +135,7 @@
       </li>
       <li class="nav-item">
         <div class="form-inline">
-        <form method="post" action="#"> <?php //{{route('logout')}} ?>
+        <form method="post" action="{{route('logout')}}">
           @csrf
         <input type="submit" value="Deconnexion" class="btn btn-danger">
         </form>

@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="{{asset('dist/img/isims.png')}}" alt="ISIMS Logo" class="brand-image" >
+      <span class="brand-text font-weight-light">ISIMS</span>
     </a>
 
     <!-- Sidebar -->
@@ -13,7 +13,7 @@
           <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Administrateur</a>
         </div>
       </div>
 
@@ -38,30 +38,30 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Article
+                Etudiants
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('etudiant.create')}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter Article</p>
+                  <p>Ajouter Etudiant</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('etudiant.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Liste des Articles</p>
+                  <p>Liste des Etudiants</p>
                 </a>
               </li>
             </ul>
-              
-              <li class="nav-item">
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Categorie
+                Enseignants
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -69,15 +69,67 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter Categorie</p>
+                  <p>Ajouter Enseignant</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Liste des Categories</p>
+                  <p>Liste des Enseignants</p>
                 </a>
               </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Diplomes
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ajouter Diplome</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Liste des Diplomes</p>
+                </a>
+              </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Cours
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ajouter Cours</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Liste des Cours</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

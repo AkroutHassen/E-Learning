@@ -44,13 +44,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('article.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ajouter Article</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('article.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Liste des Articles</p>
                 </a>
@@ -67,13 +67,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('categorie.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ajouter Categorie</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('categorie.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Liste des Categories</p>
                 </a>

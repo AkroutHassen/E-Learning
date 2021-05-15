@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Admin.layouts.template');
+    return view('Admin.welcome');
 });
 Route::get('/Enseignants', function () {
     return view('Enseignants.layouts.template');
@@ -22,3 +22,5 @@ Route::get('/Enseignants', function () {
 Route::get('/Etudiants', function () {
     return view('Etudiants.layouts.template');
 });
+
+Route::resource('admin/etudiant','Admin\EtudiantsController');
