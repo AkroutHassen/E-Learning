@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('Admin.layouts.template');
 });
@@ -22,3 +23,8 @@ Route::get('/Enseignants', function () {
 Route::get('/Etudiants', function () {
     return view('Etudiants.layouts.template');
 });
+*/
+
+Route::resource('etudiant/cours', 'Etudiants\CoursController');
+
+Route::resource('etudiant/diplome', 'Etudiants\DiplomesController');
