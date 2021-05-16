@@ -28,3 +28,7 @@ Route::get('/Etudiants', function () {
 Route::resource('etudiant/cours', 'Etudiants\CoursController');
 
 Route::resource('etudiant/diplome', 'Etudiants\DiplomesController');
+
+Route::resource('etudiant/infos', 'Etudiants\InfosController');
+
+Route::resource('enseignant/cours', 'Enseignants\CoursController');

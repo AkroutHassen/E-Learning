@@ -15,7 +15,7 @@ class InfosController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -47,7 +47,8 @@ class InfosController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        //
+        $etudiants = Etudiant::all();
+        return view('Etudiants.infos.index', compact('etudiants'));
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('Etudiants.layouts.template')
 
-@section('title')
+@section('titre')
     Liste des diplomes
 @endsection
 
@@ -26,18 +26,26 @@
           <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>Code diplome</th>
                 <th>Diplome</th>
                 <th>Description</th>
+                <th>Nombre de cours</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
                 @foreach ($diplomes as $diplome)
+                <?php $nbCours=0; ?>
                 <tr>
-                    <td>{{ $diplome->id }}</td>
                     <td>{{ $diplome->nom }}</td>
                     <td>{{ $diplome->desc }}</td>
+                    <td>
+                      @foreach ($cours as $cour)
+                        @if ($cour->codeDip == $diplome->id)
+                        <?php $nbCours++; ?>
+                        @endif
+                      @endforeach
+                      {{$nbCours}}
+                    </td>
                     <td>
                       <form method="POST" action="{{--route('diplomes.destroy', $diplome->id)--}}">
                         @csrf
@@ -50,9 +58,9 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>Code diplome</th>
                 <th>Diplome</th>
                 <th>Description</th>
+                <th>Nombre de cours</th>
                 <th>Action</th>
             </tr>
             </tfoot>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Etudiants;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diplome;
+use App\Models\Cours;
 use Illuminate\Http\Request;
 
 class DiplomesController extends Controller
@@ -16,7 +17,8 @@ class DiplomesController extends Controller
     public function index()
     {
         $diplomes = Diplome::all();
-        return view('Etudiants.diplomes.index', compact('diplomes'));
+        $cours = Cours::all();
+        return view('Etudiants.diplomes.index', compact('diplomes', 'cours'));
     }
 
     /**

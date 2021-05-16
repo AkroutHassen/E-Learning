@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Etudiants;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cours;
+use App\Models\Diplome;
 use Illuminate\Http\Request;
 
 class CoursController extends Controller
@@ -16,7 +17,12 @@ class CoursController extends Controller
     public function index()
     {
         $cours = Cours::all();
-        return view('Etudiants.cours.index', compact('cours'));
+        $diplomes = Diplome::all();
+        foreach ($diplomes as $diplome)
+        {
+            $nomDip[$diplome->id] = $diplome->nom;
+        }
+        return view('Etudiants.cours.index', compact('cours', 'nomDip'));
     }
 
     /**
@@ -46,9 +52,19 @@ class CoursController extends Controller
      * @param  \App\Models\Cours  $cours
      * @return \Illuminate\Http\Response
      */
-    public function show(Cours $cours)
+    public function show(Cours $cour)
     {
-        //
+        $diplomes = Diplome::all();
+        foreach ($diplomes as $diplome)
+        {
+            if ($diplome->id == $cour->codeDip)
+            {
+                $nomDip = $diplome->nom;
+                return view('Etudiants.cours.show', compact('cour', 'nomDip'));
+            }
+            else
+                echo 'false';
+        }
     }
 
     /**

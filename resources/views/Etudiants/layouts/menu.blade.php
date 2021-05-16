@@ -38,6 +38,23 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
+                Profile
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{--route('infos.show')--}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Infos personnelles</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
                 Diplomes
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -50,7 +67,7 @@
                 </a>
               </li>
             </ul>
-              
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -66,6 +83,25 @@
                   <p>Liste des cours</p>
                 </a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Notes
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('diplome.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Relevé des notes</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

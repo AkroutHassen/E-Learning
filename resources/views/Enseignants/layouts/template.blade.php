@@ -19,9 +19,9 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-  @include('Enseignants.layouts.header')
+  @include('Etudiants.layouts.header')
   <!-- Main Sidebar Container -->
-  @include('Enseignants.layouts.menu')
+  @include('Etudiants.layouts.menu')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -57,7 +57,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  @include('Enseignants.layouts.footer')
+  @include('Etudiants.layouts.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
