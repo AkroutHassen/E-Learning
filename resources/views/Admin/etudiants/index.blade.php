@@ -4,14 +4,15 @@
     Liste des etudiants
 @endsection
 @section('titrepage')
-    etudiants
+    Etudiants
 @endsection
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Liste des etudiants</h3>
+            <div class="card-header row">
+                <h3 class="card-title col-10">Liste des etudiants</h3>
+                <a href="{{route('etudiant.create')}}" class='col-2'> <button type = "button" class= "btn btn-primary pl-2 pr-2" >Ajouter un etudiant</button></a>
             </div>
             <!-- /.card-header -->
             @if($msg=Session::get('success'))
@@ -24,7 +25,7 @@
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
-                    <tr>
+                    <tr class="text-capitalize">
                         <th>Code</th>
                         <th>nom</th>
                         <th>prenom</th>
@@ -45,7 +46,10 @@
                                     <form method="post" action="{{route('etudiant.destroy',$etudiant->id)}}">
                                     @csrf
                                     @method('DELETE')
+                                    <a href="{{route('etudiant.show',$etudiant->id)}}"> <button type = "button" class= "btn btn-primary"><i class="far fa-eye"></i></button></a>
                                     <a href="{{route('etudiant.edit',$etudiant->id)}}"> <button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>
+
+                                        
                                         <button type = "submit" class= "btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
@@ -53,7 +57,7 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                    <tr>
+                    <tr class="text-capitalize">
                         <th>Code</th>
                         <th>nom</th>
                         <th>prenom</th>

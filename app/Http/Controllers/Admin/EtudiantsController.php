@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Etudiant;
+use App\Models\Diplome;
 use Illuminate\Http\Request;
 
 class EtudiantsController extends Controller
@@ -25,8 +26,9 @@ class EtudiantsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('Admin.etudiants.create');
+    {   
+        $diplomes=Diplome::all();
+        return view('Admin.etudiants.create',compact('diplomes'));
     }
 
     /**
@@ -37,7 +39,9 @@ class EtudiantsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['nom'=>'required','prenom'=>'required','email'=>'required','login'=>'required','mdp'=>'required']);
+        $request->validate(['nom'=>'required','prenom'=>'required',
+                            'email'=>'required','login'=>'required','mdp'=>'required',
+                            'numGroupe'=>'required']);
         Etudiant::create($request->all());
         return redirect()->route('etudiant.index')->with('success','Etudiant ' . $request->input('nom').' '. $request->input('prenom') .' a ajouté avec succéss');
     }
@@ -50,7 +54,8 @@ class EtudiantsController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        
+        $diplomes=Diplome::all();
+        return view('Admin.etudiants.show',compact(['etudiant','diplomes']));
     }
 
     /**
@@ -61,8 +66,8 @@ class EtudiantsController extends Controller
      */
     public function edit(Etudiant $etudiant)
     {
-       
-        return view('Admin.etudiants.edit',compact('etudiant'));
+        $diplomes=Diplome::all();
+        return view('Admin.etudiants.edit',compact(['etudiant','diplomes']));
     }
 
     /**
@@ -72,10 +77,11 @@ class EtudiantsController extends Controller
      * @param  \App\Models\Etudiant  $etudiant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Etudiant $etudiant)
+    public function update(Request $request,Etudiant $etudiant)
     {
         $request->validate(['email'=>'required','login'=>'required','mdp'=>'required']);
-        $etudiant->create($request->all());
+    // $etudiant = Etudiant::findOrFail($id);
+        $etudiant->update($request->all());
         return redirect()->route('etudiant.index')->with('success','L\'Etudiant ' . $request->input('nom').' '. $request->input('prenom') .' est modifié avec succéss');
     }
 

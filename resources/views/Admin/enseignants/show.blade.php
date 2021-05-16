@@ -26,29 +26,29 @@
               </div>
               @endif
               <!-- form start -->
-              <form id="quickForm" method="post" action="{{route('enseignant.update',$enseignant->id)}}">
+              <form id="quickForm" method="post" action="#">
               @csrf
               @method('PUT')
                 <div class="card-body text-capitalize">
                   <div class="row">
                     <div class="form-group col">
                       <label for="nom">nom</label>
-                      <input type="text" name="nom" class="form-control" id="nom"  value="{{$enseignant->nom}}">
+                      <input type="text" name="nom" class="form-control" id="nom"  value="{{$enseignant->nom}}" disabled>
                     </div>
                     <div class="form-group col">
                       <label for="prenom">prenom</label>
-                      <input type="text" name="prenom" class="form-control" id="prenom"  value="{{$enseignant->prenom}}">
+                      <input type="text" name="prenom" class="form-control" id="prenom"  value="{{$enseignant->prenom}}" disabled>
                     </div>
                     
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label for="tel">télephone</label>
-                      <input type="tel" name="tel" class="form-control" id="tel"  value="{{$enseignant->tel}}">
+                      <input type="tel" name="tel" class="form-control" id="tel"  value="{{$enseignant->tel}}" disabled>
                     </div>
                     <div class="form-group col">
                     <label for="grade">grade</label>
-                    <select id="grade" class="form-control" name="grade">
+                    <select id="grade" class="form-control" name="grade" disabled>
                     @if($enseignant->grade === "Contractuel")
                         <option value="Contractuel" selected>Contractuel</option>
                         <option value="MCF">MCF</option>
@@ -68,30 +68,30 @@
                   <div class="row">
                     <div class="form-group col">
                       <label for="numBureau">numero Bureau</label>
-                      <input type="text" name="numBureau" class="form-control" id="numBureau" value="{{$enseignant->numBureau}}">
+                      <input type="text" name="numBureau" class="form-control" id="numBureau" value="{{$enseignant->numBureau}}" disabled>
                     </div>
 
                     <div class="form-group col">
                       <label for="email">email</label>
-                      <input type="email" name="email" class="form-control" id="email"  value="{{$enseignant->email}}">
+                      <input type="email" name="email" class="form-control" id="email"  value="{{$enseignant->email}}" disabled>
                     </div>
                   </div>
             
                   <div class="row">
                     <div class="form-group  col">
                       <label for="login">login</label>
-                      <input type="text" name="login" class="form-control" id="login"  value="{{$enseignant->login}}">
+                      <input type="text" name="login" class="form-control" id="login"  value="{{$enseignant->login}}" disabled>
                     </div>
                     <div class="form-group  col">
                       <label for="mdp">Password</label>
-                      <input type="text" name="mdp" class="form-control" id="mdp"  value="{{$enseignant->mdp}}">
+                      <input type="text" name="mdp" class="form-control" id="mdp"  value="{{$enseignant->mdp}}" disabled>
                     </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <a href="{{route('enseignant.index')}}"><button type="button" class="btn btn-secondary">Annuler</button></a>
-                  <button type="submit" class="btn btn-primary">Modifier</button>
+                  <a href="{{route('enseignant.edit',$enseignant->id)}}"><button type="button" class="btn btn-primary">Modifier</button></a>
                 </div>
               </form>
             </div>

@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{route('welcome')}}" class="brand-link">
       <img src="{{asset('dist/img/isims.png')}}" alt="ISIMS Logo" class="brand-image" >
       <span class="brand-text font-weight-light">ISIMS</span>
     </a>
@@ -13,7 +13,7 @@
           <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Administrateur</a>
+          <a href="{{route('welcome')}}" class="d-block">Administrateur</a>
         </div>
       </div>
 
@@ -36,7 +36,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-user-graduate" ></i>
               <p>
                 Etudiants
                 <i class="right fas fa-angle-left"></i>
@@ -59,7 +59,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                 Enseignants
                 <i class="right fas fa-angle-left"></i>
@@ -67,23 +67,30 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('enseignant.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ajouter Enseignant</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('enseignant.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Liste des Enseignants</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('responsable.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Responsabilités</p>
+                </a>
+              </li>
+              
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
                 Diplomes
                 <i class="right fas fa-angle-left"></i>
@@ -91,13 +98,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('diplome.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ajouter Diplome</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('diplome.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Liste des Diplomes</p>
                 </a>
@@ -107,7 +114,7 @@
 
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-book"></i>
                 <p>
                   Cours
                   <i class="right fas fa-angle-left"></i>
@@ -115,13 +122,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('cours.create')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Ajouter Cours</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('cours.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Liste des Cours</p>
                   </a>

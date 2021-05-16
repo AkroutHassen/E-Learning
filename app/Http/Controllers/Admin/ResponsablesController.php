@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Intervenir;
+use App\Models\Enseignant;
 use App\Models\Diplome;
+
 use Illuminate\Http\Request;
 
-class DiplomesController extends Controller
+class ResponsablesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +18,11 @@ class DiplomesController extends Controller
      */
     public function index()
     {
+        $responsables=Intervenir::all();
+        $enseignants=Enseignant::all();
         $diplomes=Diplome::all();
-        return view('Admin.diplomes.index',compact('diplomes'));
+        
+        return view('Admin.responsables.index',compact(['responsables','enseignants','diplomes']));
     }
 
     /**
@@ -26,7 +32,7 @@ class DiplomesController extends Controller
      */
     public function create()
     {
-        return view('Admin.diplomes.create');
+        //
     }
 
     /**
@@ -37,19 +43,16 @@ class DiplomesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['nom'=>'required']);
-        Diplome::create($request->all());
-        return redirect()->route('diplome.index')->with('success','Diplome ' . $request->input('nom').' '. $request->input('prenom') .' a ajouté avec succéss');
-    
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Diplome  $diplome
+     * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function show(Diplome $diplome)
+    public function show(Intervenir $intervenir)
     {
         //
     }
@@ -57,38 +60,34 @@ class DiplomesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Diplome  $diplome
+     * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function edit(Diplome $diplome)
+    public function edit(Intervenir $intervenir)
     {
-        return view('Admin.diplomes.edit',compact('diplome'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Diplome  $diplome
+     * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Diplome $diplome)
+    public function update(Request $request, Intervenir $intervenir)
     {
-        $request->validate(['nom'=>'required']);
-        $diplome->update($request->all());
-        return redirect()->route('diplome.index')->with('success','Le Diplome ' . $request->input('nom').' '. $request->input('prenom') .' est modifié avec succéss');
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Diplome  $diplome
+     * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Diplome $diplome)
+    public function destroy(Intervenir $intervenir)
     {
-        $diplome->delete();
-        return redirect()->route('diplome.index')->with('success','Le Diplome est supprimé avec succéss');
+        //
     }
 }

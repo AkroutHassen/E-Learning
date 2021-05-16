@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Etudiant extends Model
+class Intervenir extends Model
 {
     protected $fillable = [
-        'nom','prenom','email','login','mdp','tel','numGroupe','adresse','codeDip'
+        'idEns','idCours','res'
     ];
     public function diplome(){
         return $this->belongsTo(diplome::class);
+    }
+    public function enseignant(){
+        return $this->belongsTo(enseignant::class);
     }
 }

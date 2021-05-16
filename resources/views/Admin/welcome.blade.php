@@ -36,9 +36,12 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-
-                <p>New Orders</p>
+              <?php $nbCours=0; ?>
+              @foreach ($cours as $cour)
+                  <?php $nbCours++; ?>
+              @endforeach      
+                <h3>{{$nbCours}}</h3>
+                <p>Nombres de cours</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
