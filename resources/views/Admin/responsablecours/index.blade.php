@@ -40,12 +40,14 @@
                                 <td>{{ $nomDip[$responsablecour->idCours] }}</td>
                                 <td>{{ $nomEns[$responsablecour->idEns]}}</td>
                                 <td>{{ $nomCours[$responsablecour->idCours]}}</td>
-                                
                                 <td>
-                                    <form method="post" action="{{--route('responsablecours.destroy',$responsablecour->id)--}}">
+                                <?php $msg = [$responsablecour->idEns,$responsablecour->idCours];
+                                    $msgs = implode(",",$msg);
+                                    ?>
+                                    <form method="post" action="{{route('responsablecours.destroy',[$msgs,$responsablecour->idEns])}}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{--route('responsablecours.edit',$responsablecour->id)--}}"> <button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                                    <a href="{{route('responsablecours.editd',[$msgs,$responsablecour->idEns])}}"> <button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>
 
                                         
                                         <button type = "submit" class= "btn btn-danger"><i class="fa fa-trash"></i></button>

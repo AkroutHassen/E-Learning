@@ -28,6 +28,7 @@ class EtudiantsController extends Controller
     public function create()
     {   
         $diplomes=Diplome::all();
+        // $groupes=Groupes::all();
         return view('Admin.etudiants.create',compact('diplomes'));
     }
 

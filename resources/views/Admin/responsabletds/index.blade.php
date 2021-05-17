@@ -29,7 +29,6 @@
                         <th>Nom Diplome</th>
                         <th>Nom Cours</th>
                         <th>Nom enseignant</th>
-                        <th>Prenom Enseignant</th>
                         <th>responsable</th>
                         <th>action</th>
                     </tr>
@@ -37,18 +36,18 @@
                     <tbody>
                         @foreach( $responsabletds as $responsabletd)
                             <tr>
-                                <td>{{ $responsabletd->diplome->nom }}</td>
-                                <td>{{ $responsabletd->cours->nom}}</td>
-                                <td>{{ $responsabletd->enseignant->nom }}</td>
-                                <td>{{ $responsabletd->enseignant->penom}}</td>
-                                <td>{{ $responsabletd->res }}</td>
+                                <td>{{ $nomDip[$responsabletd->idCours] }}</td>
+                                <td>{{ $nomEns[$responsabletd->idEns]}}</td>
+                                <td>{{ $nomCours[$responsabletd->idCours]}}</td>
+                                <td>{{ $responsabletd->resp }}</td>
                                 <td> 
-                                    <form method="post" action="{{route('responsabletd.destroy',$responsabletd->id)}}">
+                                <?php $msg = [$responsabletd->idEns,$responsabletd->idCours,$responsabletd->resp];
+                                    $msgs = implode(",",$msg);
+                                    ?>
+                                    <form method="post" action="{{route('responsabletd.destroy',[$msgs,$responsabletd->idEns])}}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{route('responsabletd.edit',$responsabletd->id)}}"> <button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>
-
-                                        
+                                    <a href="{{route('responsabletd.editd',[$msgs,$responsabletd->idEns])}}"> <button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>
                                         <button type = "submit" class= "btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
@@ -60,7 +59,6 @@
                         <th>Nom Diplome</th>
                         <th>Nom Cours</th>
                         <th>Nom enseignant</th>
-                        <th>Prenom Enseignant</th>
                         <th>responsable</th>
                         <th>action</th>
                     </tr>

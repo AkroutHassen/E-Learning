@@ -126,10 +126,74 @@ class ResponsablecoursController extends Controller
      * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function edit(Intervenir $intervenir)
+    public function edit($id)
     {
-        //
+        $tableau = explode(",",$id);
+        $idEns = $tableau[0];
+        $idCours = $tableau[1];
+        
+        $diplomes = Diplome::all();
+        $enseignants=Enseignant::all();
+        $cours=Cours::all();
+        $codeDip;
+        if(isset($tableau[2])){
+            $codeDip = $tableau[2];
+        } else {
+            // $codeDip;
+        
+            foreach ($diplomes as $diplome) {
+                if ($idCours == $diplome->id ){
+                    $codeDip= $diplome->id;
+                    break;
+                }
+                    
+            }
+        }
+        
+        
+        
+        $coursdip=[];
+        $i=0;
+        foreach($cours as $cour){
+            if($cour->codeDip == $codeDip)
+                $coursdip[$i] = $cour;
+                $i++;
+        }
+        
+        $responsables = Intervenir::all();
+        $responsablecour;
+        foreach ($responsables as $responsable) {
+            if($responsable->idCours == $idCours && $responsable->idEns == $idEns){
+                $responsablecour = $responsable;
+            }
+        }
+        return view('Admin.responsablecours.edit',compact(['responsablecour','enseignants','coursdip','responsables']));
+    
     }
+    public function editd($id)
+    {
+        $tableau = explode(",",$id);
+        $idEns = $tableau[0];
+        $idCours = $tableau[1];
+        $diplomes = Diplome::all();
+       
+        $codeDip=[];
+    
+            foreach ($diplomes as $diplome) {
+                if ($idCours == $diplome->id )
+                $codeDip[$idCours] = $diplome->id;
+            }
+        
+        $responsables = Intervenir::all();
+        $responsablecour;
+        foreach ($responsables as $responsable) {
+            if($responsable->idCours == $idCours && $responsable->idEns == $idEns){
+                $responsablecour = $responsable;
+            }
+        }
+        return view('Admin.responsablecours.editd',compact(['diplomes','responsablecour','codeDip']));
+    
+        }
 
     /**
      * Update the specified resource in storage.
@@ -138,9 +202,40 @@ class ResponsablecoursController extends Controller
      * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Intervenir $intervenir)
+    public function update(Request $request, $id)
     {
-        //
+   
+        $request->validate(['idEns'=>'required','idCours'=>'required']);
+
+        $tableau = explode(",",$id);
+        $idEns = $tableau[0];
+        $idCours = $tableau[1];
+
+        DB::table('intervenirs')
+            ->where('idEns', $idEns)->where('idCours',$idCours)
+            ->where('resp','0')
+            ->update(['idEns'=>$request->input('idEns'),
+                'idcours'=>$request->input('idCours')]);
+        
+        return redirect()->route('responsablecours.index')->with('success','L\'Enseignant est modifié avec succéss');
+   
+    }
+    public function updated(Request $request,$id)
+    {
+        $request->validate(['codeDip'=>'required']);
+
+        $tableau = explode(",",$id);
+        $idEns = $tableau[0];
+        $idCours = $tableau[1];
+
+        // DB::table('intervenirs')
+        //     ->where('idEns', $idEns)->where('idCours',$idCours)
+        //     ->where('resp',$resp)
+        //     ->update(['codeDip'=>$request->input('codeDip')]);
+            $msg = [$idEns,$idCours,$request->input('codeDip')];
+            $msgs = implode(",",$msg);
+        return redirect()->route('responsablecours.edit',[$msgs,$idEns])->with('success','L\'Enseignant est modifié avec succéss');
+   
     }
 
     /**
@@ -149,8 +244,16 @@ class ResponsablecoursController extends Controller
      * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Intervenir $intervenir)
+    public function destroy($id)
     {
-        //
+        $tableau = explode(",",$id);
+        $idEns = $tableau[0];
+        $idCours = $tableau[1];
+        // DB::table('intervenirs')->delete([
+        //     ['idEns' => $idEns, 'idCours' => $idCours,'resp' => $resp]
+        // ]);
+        DB::table('intervenirs')->where('idEns', $idEns)->where('idCours', $idCours)->where('resp', '0')->delete();
+        return redirect()->route('responsablecours.index')->with('success','L\'Enseignant est supprimé avec succéss');
+
     }
 }

@@ -40,6 +40,8 @@ Route::post('admin/responsablecours/stored','Admin\ResponsablecoursController@st
 
 Route::resource('admin/responsablecours','Admin\ResponsablecoursController');
 Route::get('admin/responsablecours/create/{n}','Admin\ResponsablecoursController@create')->name('responsablecours.create');
+Route::put('admin/responsablecours/{n}/updated','Admin\ResponsablecoursController@updated')->name('responsablecours.updated');
+Route::get('admin/responsablecours/{n}/editd','Admin\ResponsablecoursController@editd')->name('responsablecours.editd');
 
 
 
@@ -48,3 +50,5 @@ Route::post('admin/responsabletd/stored','Admin\ResponsabletdsController@stored'
 
 Route::resource('admin/responsabletd','Admin\ResponsabletdsController');
 Route::get('admin/responsabletd/create/{n}','Admin\ResponsabletdsController@create')->name('responsabletd.create');
+Route::put('admin/responsabletd/{n}/updated','Admin\ResponsabletdsController@updated')->name('responsabletd.updated');
+Route::get('admin/responsabletd/{n}/editd','Admin\ResponsabletdsController@editd')->name('responsabletd.editd');

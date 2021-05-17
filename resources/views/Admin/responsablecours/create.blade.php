@@ -31,8 +31,8 @@
                 <div class="card-body text-capitalize">
                 <div class="row">
                 <div class="form-group col">
-                    <label for="tel">Enseignant</label>
-                    <select id="Diplome" class="form-control" name="idEns">
+                    <label for="idEns">Enseignant</label>
+                    <select id="idEns" class="form-control" name="idEns">
                         <option value="{{null}}" selected >Choisir un Enseignant</option>
                         @foreach($enseignants as $enseignant)
                             <option value="{{$enseignant->id}}">{{$enseignant->nom .' ' .$enseignant->prenom }}</option>
@@ -41,8 +41,8 @@
                 </div>
 
                 <div class="form-group col">
-                    <label for="Diplome">Cours</label>
-                    <select id="Diplome" class="form-control" name="idCours">
+                    <label for="idCours">Cours</label>
+                    <select id="idCours" class="form-control" name="idCours">
                         <option value="{{null}}" selected >Choisir un Cours</option>
                         @foreach($coursdip as $cour)
                             <option value="{{$cour->id}}">{{$cour->nom}}</option>
