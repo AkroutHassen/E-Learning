@@ -9,4 +9,5 @@ class Diplome extends Model
     protected $fillable = [
         'nom','desc'
     ];
+    
 }

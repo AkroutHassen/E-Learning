@@ -44,7 +44,17 @@
                 <div class="form-group col">
                     <label for="tel">télephone</label>
                     <input type="tel" name="tel" class="form-control" id="tel" placeholder="Entrer le numero de teléphone">
+                </div>
+                <div class="form-group col-12">
+                    <label for="Diplome">Diplome</label>
+                    <select id="Diplome" class="form-control" name="codeDip">
+                    <option value="{{null}}" selected >Choisir un diplome</option>
+                      @foreach($diplomes as $diplome)
+                        <option value="{{$diplome->id}}">{{$diplome->nom}}</option>
+                      @endforeach
+                    </select>
                   </div>
+                </div>
                   <div class="form-group col">
                     <label for="numGroupe">Groupe</label>
                     <input type="number" name="numGroupe" class="form-control" id="numGroupe" min = "1" start ="1" placeholder="Entrer le numero de groupe">

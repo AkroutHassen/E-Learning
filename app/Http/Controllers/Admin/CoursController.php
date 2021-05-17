@@ -17,7 +17,12 @@ class CoursController extends Controller
     public function index()
     {
         $cours=Cours::all();
-        return view('Admin.cours.index',compact('cours'));
+        $diplomes=Diplome::all();
+        $nomDip=[];
+        foreach ($diplomes as $diplome) {
+            $nomDip[$diplome->id] = $diplome->nom;
+        }
+        return view('Admin.cours.index',compact(['cours','nomDip']));
     }
 
     /**
@@ -94,9 +99,9 @@ class CoursController extends Controller
      * @param  \App\Models\Cours  $cours
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cours $cours)
+    public function destroy(Cours $cour)
     {
-        $cours->delete();
+        $cour->delete();
         return redirect()->route('cours.index')->with('success','Le Cours est supprimé avec succéss');
     }
 }

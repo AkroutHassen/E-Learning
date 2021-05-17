@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Intervenir extends Model
 {
     protected $fillable = [
-        'idEns','idCours','res'
+        'idEns','idCours','resp'
     ];
-    public function diplome(){
-        return $this->belongsTo(diplome::class);
+    public function cours(){
+        return $this->belongsTo(cours::class);
     }
     public function enseignant(){
         return $this->belongsTo(enseignant::class);

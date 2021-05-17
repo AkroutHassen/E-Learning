@@ -40,8 +40,7 @@ class EtudiantsController extends Controller
     public function store(Request $request)
     {
         $request->validate(['nom'=>'required','prenom'=>'required',
-                            'email'=>'required','login'=>'required','mdp'=>'required',
-                            'numGroupe'=>'required']);
+                            'email'=>'required','login'=>'required','mdp'=>'required']);
         Etudiant::create($request->all());
         return redirect()->route('etudiant.index')->with('success','Etudiant ' . $request->input('nom').' '. $request->input('prenom') .' a ajouté avec succéss');
     }
