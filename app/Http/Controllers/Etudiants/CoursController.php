@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class CoursController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,12 +27,8 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours = Cours::all();
-        $diplomes = Diplome::all();
-        foreach ($diplomes as $diplome)
-        {
-            $nomDip[$diplome->id] = $diplome->nom;
-        }
+        $cours = Cours::where('codeDip', session('codeDip'))->get();
+        $nomDip = Diplome::where('id', session('codeDip'))->get('nom');
         return view('Etudiants.cours.index', compact('cours', 'nomDip'));
     }
 
@@ -54,17 +61,8 @@ class CoursController extends Controller
      */
     public function show(Cours $cour)
     {
-        $diplomes = Diplome::all();
-        foreach ($diplomes as $diplome)
-        {
-            if ($diplome->id == $cour->codeDip)
-            {
-                $nomDip = $diplome->nom;
-                return view('Etudiants.cours.show', compact('cour', 'nomDip'));
-            }
-            else
-                echo 'false';
-        }
+        $nomDip = Diplome::where('id', $cour->codeDip)->get('nom');
+        return view('Etudiants.cours.show', compact('cour', 'nomDip'));
     }
 
     /**

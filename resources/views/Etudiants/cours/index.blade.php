@@ -36,7 +36,7 @@
                 @foreach ($cours as $cour)
                 <tr>
                     <td>
-                          {{ $nomDip[$cour->codeDip] }}
+                          {{ $nomDip[0]->nom }}
                     </td>
                     <td>{{ $cour->nom }}</td>
                     <td>

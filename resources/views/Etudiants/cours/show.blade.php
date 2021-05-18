@@ -10,11 +10,11 @@
 
 @section('contenu')
     <!-- Widget: user widget style 1 -->
-    <div class="card card-widget widget-user m-5">
+    <div class="card card-widget widget-user">
       <!-- Add the bg color to the header using any of the bg-* classes -->
       <div class="widget-user-header bg-info">
         <h2 class="widget-user-username">Cours: {{ $cour->nom }}</h2>
-        <h5 class="widget-user-desc">Diplome: {{ $nomDip }}</h5>
+        <h5 class="widget-user-desc">Diplome: {{ $nomDip[0]->nom }}</h5>
       </div>
       <div class="card-footer">
           <p class="text-center font-weight-normal text-justify"><span class="font-weight-bold">Description du cours</span><br>{{ $cour->desc }}</p>

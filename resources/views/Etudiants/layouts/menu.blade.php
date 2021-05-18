@@ -13,7 +13,7 @@
           <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Etudiant fouleni</a>
+          <a href="#" class="d-block">{{ session('prenom') }}</a>
         </div>
       </div>
 
@@ -44,7 +44,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{--route('infos.show')--}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('infos.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Infos personnelles</p>
                 </a>
@@ -77,8 +77,24 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php
+            //function alert($msg) {
+              //echo "<script type='text/javascript'>alert('.$msg.');</script>";
+              //}
+              ?>
+              @if (null !== session('codeDip'))
+                @php
+                    $href = route('cours.index');
+                @endphp             
+              @else
+                @php
+                  //alert("Priere de vous s'inscrire dans un diplome");
+                  //echo "<script>alert('Priere de vous s\'inscrire dans un diplome');</script>";
+                  $href = route('diplome.index');
+                @endphp  
+              @endif
               <li class="nav-item">
-                <a href="{{route('cours.index')}}" class="nav-link">
+                <a href="{{ $href }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Liste des cours</p>
                 </a>
@@ -95,7 +111,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('diplome.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('note.show', session('id'))}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Relevé des notes</p>
                 </a>

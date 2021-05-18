@@ -5,9 +5,21 @@ namespace App\Http\Controllers\Etudiants;
 use App\Http\Controllers\Controller;
 use App\Models\Etudiant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InfosController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +27,13 @@ class InfosController extends Controller
      */
     public function index()
     {
-        
+        // $notes = Note::all();
+        // $diplomes = Diplome::all();
+        // foreach ($diplomes as $diplome)
+        // {
+        //     $nomDip[$diplome->id] = $diplome->nom;
+        // }
+        // return view('Etudiants.cours.index', compact('cours', 'nomDip'));
     }
 
     /**
@@ -69,9 +87,18 @@ class InfosController extends Controller
      * @param  \App\Models\Etudiant  $etudiant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Etudiant $etudiant)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate(['codeDip'=>'required']);
+        //$etudiant->update($request->all());
+        if($request->input('codeDip') == 'null')
+            $var = null;
+        else
+            $var = $request->input('codeDip');
+        DB::table('etudiants')->where('id', $id)->update(['codeDip' => $var]);
+        $codeDip = Etudiant::where('id', $id)->get('codeDip');
+        session(['codeDip' => $codeDip[0]->codeDip]);
+        return redirect()->route("diplome.index")->with('success', 'Inscription modifié avec succés !');
     }
 
     /**

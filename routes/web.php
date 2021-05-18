@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,11 @@ Route::resource('etudiant/diplome', 'Etudiants\DiplomesController');
 
 Route::resource('etudiant/infos', 'Etudiants\InfosController');
 
-Route::resource('enseignant/cours', 'Enseignants\CoursController');
+Route::resource('etudiant/note', 'Etudiants\NotesController');
+
+//Route::resource('enseignant/diplome', 'Enseignants\DiplomesController');
+
+//Route::resource('enseignant/cours', 'Enseignants\CoursController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -20,6 +20,12 @@
         </div>
         @endif
 
+        @if ($msg=Session::get('error'))
+        <div class="alert alert-error">
+          {{$msg}}
+        </div>
+        @endif
+
 
         <!-- /.card-header -->
         <div class="card-body">
@@ -33,8 +39,10 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($diplomes as $diplome)
-                <?php $nbCours=0; ?>
+            @foreach ($diplomes as $diplome)
+              @php
+                $nbCours=0;
+              @endphp 
                 <tr>
                     <td>{{ $diplome->nom }}</td>
                     <td>{{ $diplome->desc }}</td>
@@ -47,10 +55,20 @@
                       {{$nbCours}}
                     </td>
                     <td>
-                      <form method="POST" action="{{--route('diplomes.destroy', $diplome->id)--}}">
+                      <form method="POST" action="{{ route('infos.update', session('id')) }}">
                         @csrf
-                        {{--@method('DELETE')--}}
-                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        @method('PUT')
+                        @if (null !== session('codeDip'))
+                            @if (session('codeDip') == $diplome->id)
+                              <input type="hidden" name="codeDip" value="<?php echo 'null'; ?>">
+                              <button type="submit" class="btn btn-danger">Se désinscrire</button>
+                            @else
+                              <button type="submit" class="btn btn-secondary" disabled>S'inscrire</button>
+                            @endif
+                        @else
+                          <button type="submit" class="btn btn-primary">S'inscrire</button>
+                          <input type="hidden" name="codeDip" value="{{ $diplome->id }}">
+                        @endif
                       </form>
                     </td>
                 </tr>
