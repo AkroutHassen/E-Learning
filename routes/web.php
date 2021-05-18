@@ -16,11 +16,8 @@ use App\Models\Groupe;
 |
 */
 
-Route::get('/', function () {
-    $cours=Cours::all();
-    $diplome=Diplome::all();
-    return view('Admin.welcome',compact(['cours','diplome']));
-})->name('welcome');
+Route::get('/','Admin\StatistiquesController@index')->name('welcome');
+    
 Route::get('/Enseignants', function () {
     return view('Enseignants.layouts.template');
 });

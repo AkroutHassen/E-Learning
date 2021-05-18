@@ -28,7 +28,7 @@
                     <tr class="text-capitalize">
                         <th>Nom Diplome</th>
                         <th>Nom Cours</th>
-                        <th>Nom enseignant</th>
+                        <th>Nom Groupe</th>
                         <th>responsable</th>
                         <th>action</th>
                     </tr>
@@ -37,9 +37,11 @@
                         @foreach( $responsabletds as $responsabletd)
                             <tr>
                                 <td>{{ $nomDip[$responsabletd->idCours] }}</td>
-                                <td>{{ $nomEns[$responsabletd->idEns]}}</td>
                                 <td>{{ $nomCours[$responsabletd->idCours]}}</td>
                                 <td>{{ $responsabletd->resp }}</td>
+                                <td>{{ $nomEns[$responsabletd->idEns]}}</td>
+                                
+                                
                                 <td> 
                                 <?php $msg = [$responsabletd->idEns,$responsabletd->idCours,$responsabletd->resp];
                                     $msgs = implode(",",$msg);
@@ -58,7 +60,7 @@
                     <tr class="text-capitalize">
                         <th>Nom Diplome</th>
                         <th>Nom Cours</th>
-                        <th>Nom enseignant</th>
+                        <th>Nom Groupe</th>
                         <th>responsable</th>
                         <th>action</th>
                     </tr>
