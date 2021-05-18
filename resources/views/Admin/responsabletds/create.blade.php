@@ -48,7 +48,7 @@
                     <select id="idEns" class="form-control" name="idEns">
                         <option value="{{null}}" selected >Choisir un Enseignant</option>
                         @foreach($enseignants as $enseignant)
-                            <option value="{{$enseignant->id}}">{{$enseignant->nom .' ' .$enseignant->prenom }}</option>
+                            <option value="{{$enseignant->id}}">{{$enseignant->id .'. ' .$enseignant->nom .' ' .$enseignant->prenom }}</option>
                         @endforeach
                     </select>
                   </div>

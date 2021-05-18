@@ -68,7 +68,7 @@
                             @endphp  
                             
                           @endif
-                          <option {{$selected}} value="{{$enseignant->id}}">{{$enseignant->nom .' ' .$enseignant->prenom}}</option>
+                          <option {{$selected}} value="{{$enseignant->id}}">{{$enseignant->id .'. ' .$enseignant->nom .' ' .$enseignant->prenom}}</option>
                         @endforeach
                         </select>
                       </div>

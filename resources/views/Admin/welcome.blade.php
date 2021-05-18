@@ -647,7 +647,7 @@ function noms($diplomes){
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data                :[28, 48, 40, 19, 86, 27, 90]
         },
         {
           label               : 'Electronics',

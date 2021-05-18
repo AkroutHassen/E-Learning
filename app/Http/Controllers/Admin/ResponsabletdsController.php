@@ -43,7 +43,7 @@ class ResponsabletdsController extends Controller
         
         $nomEns=[];
         foreach($enseignants as $enseigant){
-            $nomEns[$enseigant->id] = $enseigant->nom .' '.$enseigant->prenom ;
+            $nomEns[$enseigant->id] =$enseigant->id .'. ' .$enseigant->nom .' '.$enseigant->prenom ;
         }
         $nomCours=[];
         foreach($cours as $cour){
