@@ -44,7 +44,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('infos.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('infos.show', session('id'))}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Infos personnelles</p>
                 </a>
@@ -110,8 +110,19 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @if (null !== session('codeDip'))
+                @php
+                    $href = route('note.show', session('id'));
+                @endphp             
+              @else
+                @php
+                  //alert("Priere de vous s'inscrire dans un diplome");
+                  //echo "<script>alert('Priere de vous s\'inscrire dans un diplome');</script>";
+                  $href = route('diplome.index');
+                @endphp  
+              @endif
               <li class="nav-item">
-                <a href="{{route('note.show', session('id'))}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{ $href }}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Relevé des notes</p>
                 </a>

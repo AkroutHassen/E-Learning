@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Etudiants;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cours;
-use App\Models\Diplome;
 use App\Models\Inscription;
 use Illuminate\Http\Request;
 
-class CoursController extends Controller
+class InscriptionsController extends Controller
 {
 
     /**
@@ -20,7 +18,7 @@ class CoursController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -28,10 +26,7 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours = Cours::where('codeDip', session('codeDip'))->get();
-        $nomDip = Diplome::where('id', session('codeDip'))->get('nom');
-        $inscris = Inscription::where('idEtu', session('id'))->get('idCours');
-        return view('Etudiants.cours.index', compact('cours', 'nomDip', 'inscris'));
+        //
     }
 
     /**
@@ -52,31 +47,29 @@ class CoursController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['idCours'=>'required', 'idEtu'=>'required']);
+        Inscription::create($request->all());
+        return redirect()->route('cours.show', $request->idCours)->with('success', 'Inscription effectué avec succés !');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cours  $cours
+     * @param  \App\Models\Inscription  $inscription
      * @return \Illuminate\Http\Response
      */
-    public function show(Cours $cour)
+    public function show(Inscription $inscription)
     {
-        $inscri = false;
-        if(Inscription::where('idCours', $cour->id)->where('idEtu', session('id'))->exists())
-            $inscri = true;
-        $nomDip = Diplome::where('id', $cour->codeDip)->get('nom');
-        return view('Etudiants.cours.show', compact('cour', 'nomDip', 'inscri'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cours  $cours
+     * @param  \App\Models\Inscription  $inscription
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cours $cours)
+    public function edit(Inscription $inscription)
     {
         //
     }
@@ -85,10 +78,10 @@ class CoursController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cours  $cours
+     * @param  \App\Models\Inscription  $inscription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cours $cours)
+    public function update(Request $request, Inscription $inscription)
     {
         //
     }
@@ -96,11 +89,12 @@ class CoursController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cours  $cours
+     * @param  \App\Models\Inscription  $inscription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cours $cours)
+    public function destroy($idCours)
     {
-        //
+        Inscription::where('idEtu', session('id'))->where('idCours', $idCours)->delete();
+        return redirect()->route("cours.index")->with('warning', 'Inscription supprimé avec succés !');
     }
 }

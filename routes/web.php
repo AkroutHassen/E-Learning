@@ -34,6 +34,8 @@ Route::resource('etudiant/infos', 'Etudiants\InfosController');
 
 Route::resource('etudiant/note', 'Etudiants\NotesController');
 
+Route::resource('etudiant/inscription', 'Etudiants\InscriptionsController');
+
 //Route::resource('enseignant/diplome', 'Enseignants\DiplomesController');
 
 //Route::resource('enseignant/cours', 'Enseignants\CoursController');

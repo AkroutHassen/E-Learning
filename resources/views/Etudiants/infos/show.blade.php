@@ -10,7 +10,7 @@
 
 @section('contenu')
 <div class="row">
-  <div class="card card-primary card-outline col m-3">
+  <div class="card card-primary card-outline col m-4">
     <div class="card-body box-profile col">
       <div class="text-center">
         <img class="profile-user-img img-fluid img-circle"
@@ -42,7 +42,7 @@
   <!-- /.card -->
 
   <!-- About Me Box -->
-  <div class="card card-primary col m-3">
+  <div class="card card-primary col m-4">
     <!--<div class="card-header">
       <h3 class="card-title">About Me</h3>
     </div>-->
@@ -83,7 +83,7 @@
   <!-- /.card -->
 </div>
 <div class="text-center">
-  <a href="{{ route('infos.edit', session('id')) }}" class="btn btn-primary"><b>Modifier</b></a>
+  <a href="{{ route('infos.edit', session('id')) }}" class="btn btn-lg btn-primary mb-4"><b>Modifier</b></a>
 </div>
 
 @endsection

@@ -20,12 +20,17 @@
         </div>
         @endif
 
-        @if ($msg=Session::get('error'))
-        <div class="alert alert-error">
+        @if ($msg=Session::get('warning'))
+        <div class="alert alert-warning">
           {{$msg}}
         </div>
         @endif
 
+        @if (null == session('codeDip'))
+            <div class="alert alert-warning">
+              Veuillez vous inscrire dans un diplome pour pouvoir continuer
+            </div>
+        @endif
 
         <!-- /.card-header -->
         <div class="card-body">

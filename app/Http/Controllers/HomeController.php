@@ -43,7 +43,7 @@ class HomeController extends Controller
                 session(['login' => $userData[0]->login]);
                 session(['numGroupe' => $userData[0]->numGroupe]);
                 session(['codeDip' => $userData[0]->codeDip]);
-                return view('Etudiants.layouts.template', compact('user'));
+                return redirect()->route('infos.show', session('id'));
                 break;
             default:
                 # code...

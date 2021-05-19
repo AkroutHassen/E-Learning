@@ -19,6 +19,11 @@
           {{$msg}}
         </div>
         @endif
+        @if ($msg=Session::get('warning'))
+        <div class="alert alert-warning">
+          {{$msg}}
+        </div>
+        @endif
 
 
         <!-- /.card-header -->
@@ -43,13 +48,37 @@
                       <span class="d-inline-block text-truncate" style="max-width: 400px;">{{ $cour->desc }}</span>
                     </td>
                     <td>
-                      <form method="POST" action="{{--route('cours.inscrire', $cour->id)--}}">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">S'inscrire</i></button>
-                        <a href="{{route('cours.show', $cour->id)}}">
-                          <button type="button" class="btn btn-info">Consulter</i></button>
-                        </a>
-                      </form>
+                      @php
+                        $inscriBool = false;
+                      @endphp
+                      @foreach ($inscris as $inscri)
+                        @if ($cour->id == $inscri->idCours)
+                          @php
+                            $inscriBool = true;
+                          @endphp
+                          @break
+                        @endif
+                      @endforeach
+                      @if ($inscriBool)
+                        <form method="POST" action="{{route('inscription.destroy', $cour->id)}}">
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('cours.show', $cour->id)}}">
+                            <button type="button" class="btn btn-success">Accéder</i></button>
+                          </a>
+                          <button type="submit" class="btn btn-danger">Se désinscrire</button>
+                        </form>
+                      @else
+                        <form method="POST" action="{{route('inscription.store')}}">
+                          @csrf
+                          <input type="hidden" name="idCours" value="{{ $cour->id }}">
+                          <input type="hidden" name="idEtu" value="{{ session('id') }}">
+                          <a href="{{route('cours.show', $cour->id)}}">
+                            <button type="button" class="btn btn-info">Consulter</i></button>
+                          </a>
+                          <button type="submit" class="btn btn-primary">S'inscrire</i></button>
+                        </form>
+                      @endif
                     </td>
                 </tr>
             @endforeach

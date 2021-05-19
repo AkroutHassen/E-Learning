@@ -18,12 +18,8 @@ class Etudiant extends Model
        'nom', 'prenom', 'email', 'login', 'tel', 'adresse', 'numGroupe', 'codeDip',
    ];
 
-   /**
-    * The attributes that should be hidden for arrays.
-    *
-    * @var array
-    */
-   protected $hidden = [
-       'mdp',
-   ];
+   public function diplome()
+   {
+       return $this->belongsTo(diplome::class, 'codeDip');
+   }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Etudiants;
 
 use App\Http\Controllers\Controller;
 use App\Models\Etudiant;
+use App\Models\Inscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -65,8 +66,8 @@ class InfosController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        $etudiants = Etudiant::all();
-        return view('Etudiants.infos.index', compact('etudiants'));
+        $etudiant = Etudiant::where('id', session('id'))->first();
+        return view('Etudiants.infos.show', compact('etudiant'));
     }
 
     /**
@@ -75,9 +76,10 @@ class InfosController extends Controller
      * @param  \App\Models\Etudiant  $etudiant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Etudiant $etudiant)
+    public function edit(Etudiant $etud)
     {
-        //
+        echo $etud;
+        //return view('Etudiants.infos.edit', compact('etudiant'));
     }
 
     /**
@@ -98,6 +100,8 @@ class InfosController extends Controller
         DB::table('etudiants')->where('id', $id)->update(['codeDip' => $var]);
         $codeDip = Etudiant::where('id', $id)->get('codeDip');
         session(['codeDip' => $codeDip[0]->codeDip]);
+        if($codeDip[0]->codeDip == null)
+            Inscription::where('idEtu', session('id'))->delete();
         return redirect()->route("diplome.index")->with('success', 'Inscription modifié avec succés !');
     }
 
