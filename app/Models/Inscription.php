@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Note extends Model
+class Inscription extends Model
 {
     protected $fillable = [
-
-        'idEtu', 'idCours', 'noteExam', 'noteTd', 'moy'
-
+        'idEtu', 'idCours'
     ];
     public function cours()
     {

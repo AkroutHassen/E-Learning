@@ -10,9 +10,9 @@ class Intervenir extends Model
         'idEns','idCours','resp'
     ];
     public function cours(){
-        return $this->belongsTo(cours::class);
+        return $this->belongsTo(cours::class,'idCours');
     }
     public function enseignant(){
-        return $this->belongsTo(enseignant::class);
+        return $this->belongsTo(enseignant::class,'idEns');
     }
 }

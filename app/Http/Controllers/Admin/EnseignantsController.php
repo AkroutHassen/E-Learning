@@ -42,6 +42,8 @@ class EnseignantsController extends Controller
                             'email'=>'required','login'=>'required','mdp'=>'required',
                             'grade'=>'required','numBureau'=>'required']);
         Enseignant::create($request->all());
+        // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Marc']);
+
         return redirect()->route('enseignant.index')->with('success','Enseignant ' . $request->input('nom').' '. $request->input('prenom') .' a ajouté avec succéss');
     
     }
