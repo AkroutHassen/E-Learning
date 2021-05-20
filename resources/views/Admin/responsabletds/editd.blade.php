@@ -35,7 +35,7 @@
                 <div class="card-body text-capitalize">
                   <div class="row">
                     <div class="form-group col-12">
-                      <label for="Diplome">Diplome</label>
+                      <label for="Diplome">Diplome<span class="text-danger">*</span></label>
                       <select id="Diplome" class="form-control" name="codeDip">
                       <option  value="{{null}}">Choisir un diplome</option>
                         @foreach($diplomes as $diplome)

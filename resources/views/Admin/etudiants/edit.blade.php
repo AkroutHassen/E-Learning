@@ -32,11 +32,11 @@
                 <div class="card-body text-capitalize">
                   <div class="row">
                     <div class="form-group col">
-                      <label for="nom">nom</label>
+                      <label for="nom">nom<span class="text-danger">*</span></label>
                       <input type="text" name="nom" class="form-control" id="nom"  value="{{$etudiant->nom}}">
                     </div>
                     <div class="form-group col">
-                      <label for="prenom">prenom</label>
+                      <label for="prenom">prenom<span class="text-danger">*</span></label>
                       <input type="text" name="prenom" class="form-control" id="prenom"  value="{{$etudiant->prenom}}">
                     </div>
                     
@@ -46,9 +46,31 @@
                       <label for="tel">télephone</label>
                       <input type="tel" name="tel" class="form-control" id="tel"  value="{{$etudiant->tel}}">
                     </div>
+                     @php
+                        $disabled="disabled";
+                      @endphp
+                    @if($etuCodeDip->codeDip !== null)
+                    @php
+                        $disabled="";
+                    @endphp
+                    @endif
                     <div class="form-group col">
                       <label for="numGroupe">Groupe</label>
-                      <input type="number" name="numGroupe" class="form-control" id="numGroupe"  value="{{$etudiant->numGroupe}}">
+                      <select id="numGroupe" class="form-control" name="numGroupe" {{$disabled}}>
+                      <option  value="{{null}}">Choisir un Groupe</option>
+                        @foreach($groupes as $groupe)
+                          @php
+                            $selected = "";
+                          @endphp
+                          @if ($groupe->id == $etudiant->numGroupe )
+                            @php
+                              $selected = "selected";
+                            @endphp  
+                            
+                          @endif
+                          <option {{$selected}} value="{{$groupe->id}}">{{'TD ' . $groupe->id}}</option>
+                        @endforeach
+                      </select>
                     </div>
                   </div>
                   <div class="row">
@@ -58,7 +80,7 @@
                     </div>
 
                     <div class="form-group col">
-                      <label for="email">email</label>
+                      <label for="email">email<span class="text-danger">*</span></label>
                       <input type="email" name="email" class="form-control" id="email"  value="{{$etudiant->email}}">
                     </div>
                   </div>
@@ -84,12 +106,12 @@
                   </div>
                   <div class="row">
                     <div class="form-group  col">
-                      <label for="login">login</label>
+                      <label for="login">login<span class="text-danger">*</span></label>
                       <input type="text" name="login" class="form-control" id="login"  value="{{$etudiant->login}}">
                     </div>
                     <div class="form-group  col">
-                      <label for="mdp">Password</label>
-                      <input type="text" name="mdp" class="form-control" id="mdp"  value="{{$etudiant->mdp}}">
+                      <label for="mdp">Password<span class="text-danger">*</span></label>
+                      <input type="text" name="mdp" class="form-control" id="mdp"  value="">
                     </div>
                   </div>
                 </div>

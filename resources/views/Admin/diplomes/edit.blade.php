@@ -31,7 +31,7 @@
               @method('PUT')
                 <div class="card-body text-capitalize">
                 <div class="form-group">
-                    <label for="nom">nom</label>
+                    <label for="nom">nom<span class="text-danger">*</span></label>
                     <input type="text" name="nom" class="form-control" id="nom" placeholder="nom" value="{{$diplome->nom}}">
                   </div>
                   <div class="form-group">

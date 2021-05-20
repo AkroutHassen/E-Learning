@@ -43,6 +43,7 @@
                                     <?php $msg = [$groupe->id,$groupe->codeDip];
                                     $msgs = implode(",",$msg);
                                     ?>
+                                    <a href="{{route('groupe.show',[$msgs,$groupe->id])}}"> <button type = "button" class= "btn btn-primary"><i class="far fa-eye"></i></button></a>
                                     <a href="{{route('groupe.edit',[$msgs,$groupe->id])}}"> 
                                     {{-- <a href="{{route('groupe.edite',[$groupe->codeDip,$groupe->id])}}"> --}}
                                         <button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button>

@@ -32,11 +32,11 @@
                 
                 <div class="row">
                 <div class="form-group col">
-                    <label for="nom">nom</label>
+                    <label for="nom">nom<span class="text-danger">*</span></label>
                     <input type="text" name="nom" class="form-control" id="nom" placeholder="Entrer le nom">
                   </div>
                   <div class="form-group col">
-                    <label for="prenom">prenom</label>
+                    <label for="prenom">prenom<span class="text-danger">*</span></label>
                     <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Entrer le prenom">
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                     <input type="tel" name="tel" class="form-control" id="tel"  placeholder="Entrer le numero de teléphone">
                   </div>
                   <div class="form-group col">
-                    <label for="grade">grade</label>
+                    <label for="grade">grade<span class="text-danger">*</span></label>
                     <select id="grade" class="form-control" name="grade">
                         <option value="Contractuel"  >Contractuel</option>
                         <option value="MCF">MCF</option>
@@ -56,24 +56,24 @@
                 </div>
                 <div class="row">
                 <div class="form-group col">
-                    <label for="numBureau">Numero Bureau</label>
+                    <label for="numBureau">Numero Bureau<span class="text-danger">*</span></label>
                     <input type="number" name="numBureau" min="1" start="1" class="form-control" id="numBureau" placeholder="Entrer le numero du bureau">
                   </div>
 
                   <div class="form-group col">
-                    <label for="email">email</label>
+                    <label for="email">email<span class="text-danger">*</span></label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Entrer l'email">
                   </div>
                 </div>
                 
                 <div class="row " >
                 <div class="form-group col">
-                    <label for="login">login</label>
+                    <label for="login">login<span class="text-danger">*</span></label>
                     <input type="text" name="login" class="form-control" id="login" placeholder="Entrer le login">
                   </div>
 
                   <div class="form-group col">
-                    <label for="mdp">Mot de passe</label>
+                    <label for="mdp">Mot de passe<span class="text-danger">*</span></label>
                     <input type="password" name="mdp" class="form-control" id="mdp" placeholder="Entrer le mot de passe">
                   </div>
                 </div>

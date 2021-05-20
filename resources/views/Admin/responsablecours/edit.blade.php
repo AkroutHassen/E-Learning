@@ -36,7 +36,7 @@
                   
                     <div class="row">
                       <div class="form-group col">
-                          <label for="idCours">Cours</label>
+                          <label for="idCours">Cours<span class="text-danger">*</span></label>
                           <select id="idCours" class="form-control" name="idCours">
                           <option value="{{null}}" selected >Choisir un Cours</option>
                           @foreach($coursdip as $cour)
@@ -55,7 +55,7 @@
                       </div>
                     
                     <div class="form-group col">
-                        <label for="idEns">Enseignant</label>
+                        <label for="idEns">Enseignant<span class="text-danger">*</span></label>
                         <select id="idEns" class="form-control" name="idEns">
                             <option value="{{null}}" selected >Choisir un Enseignant</option>
                             @foreach($enseignants as $enseignant)

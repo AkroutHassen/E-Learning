@@ -29,8 +29,7 @@ Route::resource('admin/diplome','Admin\DiplomesController');
 Route::resource('admin/enseignant','Admin\EnseignantsController');
 Route::resource('admin/cours','Admin\CoursController');
 Route::resource('admin/groupe','Admin\GroupesController');
-
-
+Route::resource('admin/affecter','Admin\AffecteretudiantsController');
 
 Route::get('admin/responsablecours/created','Admin\ResponsablecoursController@created')->name('responsablecours.created');
 Route::post('admin/responsablecours/stored','Admin\ResponsablecoursController@stored')->name('responsablecours.stored');

@@ -39,13 +39,13 @@
               <i class="nav-icon fas fa-user-graduate" ></i>
               <p>
                 Etudiants
-                <i class="right fas fa-angle-left nav-icon"></i>
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('etudiant.create')}}" class="nav-link"> <?php //{{route('article.create')}}?>
-                 <i class="fas fa-plus"></i>
+                 <i class="fas fa-plus nav-icon"></i>
                   <p>Ajouter Etudiant</p>
                 </a>
               </li>
@@ -55,6 +55,12 @@
                   <p>Liste des Etudiants</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('affecter.index')}}" class="nav-link">
+                  <i class="fas fa-list nav-icon"></i>
+                  <p>Affecter Etudiants</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -62,7 +68,7 @@
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                 Enseignants
-                <i class="right fas fa-angle-left nav-icon"></i>
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -74,19 +80,19 @@
               </li>
               <li class="nav-item">
                 <a href="{{route('enseignant.index')}}" class="nav-link">
-                  <i class="fas fa-list"></i>
+                  <i class="fas fa-list nav-icon"></i>
                   <p>Liste des Enseignants</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('responsabletd.index')}}" class="nav-link">
-                  <i class="fas fa-list"></i>
+                  <i class="fas fa-list nav-icon"></i>
                   <p>Responsable TDs</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('responsablecours.index')}}" class="nav-link">
-                  <i class="fas fa-list"></i>
+                  <i class="fas fa-list nav-icon"></i>
                   <p>Responsable Cours</p>
                 </a>
               </li>
@@ -105,13 +111,13 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('diplome.create')}}" class="nav-link">
-                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-plus nav-icon"></i>
                   <p>Ajouter Diplome</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('diplome.index')}}" class="nav-link">
-                 <i class="fas fa-list"></i>
+                 <i class="fas fa-list nav-icon"></i>
                   <p>Liste des Diplomes</p>
                 </a>
               </li>
@@ -129,13 +135,13 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{route('cours.create')}}" class="nav-link">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-plus nav-icon"></i>
                     <p>Ajouter Cours</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{route('cours.index')}}" class="nav-link">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-list nav-icon"></i>
                     <p>Liste des Cours</p>
                   </a>
                 </li>
@@ -152,13 +158,13 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{route('groupe.create')}}" class="nav-link">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-plus nav-icon"></i>
                     <p>Ajouter Groupe</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{route('groupe.index')}}" class="nav-link">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-list nav-icon"></i>
                     <p>Liste des Groupes</p>
                   </a>
                 </li>

@@ -32,11 +32,11 @@
                 <div class="card-body text-capitalize">
                   <div class="row">
                     <div class="form-group col">
-                      <label for="nom">nom</label>
+                      <label for="nom">nom<span class="text-danger">*</span></label>
                       <input type="text" name="nom" class="form-control" id="nom"  value="{{$enseignant->nom}}">
                     </div>
                     <div class="form-group col">
-                      <label for="prenom">prenom</label>
+                      <label for="prenom">prenom<span class="text-danger">*</span></label>
                       <input type="text" name="prenom" class="form-control" id="prenom"  value="{{$enseignant->prenom}}">
                     </div>
                     
@@ -47,7 +47,7 @@
                       <input type="tel" name="tel" class="form-control" id="tel"  value="{{$enseignant->tel}}">
                     </div>
                     <div class="form-group col">
-                    <label for="grade">grade</label>
+                    <label for="grade">grade<span class="text-danger">*</span></label>
                     <select id="grade" class="form-control" name="grade">
                     @if($enseignant->grade === "Contractuel")
                         <option value="Contractuel" selected>Contractuel</option>
@@ -67,24 +67,24 @@
                   </div>
                   <div class="row">
                     <div class="form-group col">
-                      <label for="numBureau">numero Bureau</label>
+                      <label for="numBureau">numero Bureau<span class="text-danger">*</span></label>
                       <input type="text" name="numBureau" class="form-control" id="numBureau" value="{{$enseignant->numBureau}}">
                     </div>
 
                     <div class="form-group col">
-                      <label for="email">email</label>
+                      <label for="email">email<span class="text-danger">*</span></label>
                       <input type="email" name="email" class="form-control" id="email"  value="{{$enseignant->email}}">
                     </div>
                   </div>
             
                   <div class="row">
                     <div class="form-group  col">
-                      <label for="login">login</label>
+                      <label for="login">login<span class="text-danger">*</span></label>
                       <input type="text" name="login" class="form-control" id="login"  value="{{$enseignant->login}}">
                     </div>
                     <div class="form-group  col">
-                      <label for="mdp">Password</label>
-                      <input type="text" name="mdp" class="form-control" id="mdp"  value="{{$enseignant->mdp}}">
+                      <label for="mdp">Password<span class="text-danger">*</span></label>
+                      <input type="text" name="mdp" class="form-control" id="mdp"  value="">
                     </div>
                   </div>
                 </div>

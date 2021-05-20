@@ -32,7 +32,7 @@
                 
                 <div class="row">
                     <div class="form-group col">
-                        <label for="Diplome">Diplome</label>
+                        <label for="Diplome">Diplome<span class="text-danger">*</span></label>
                         <select id="Diplome" class="form-control" name="codeDip">
                         <option value="{{null}}" selected >Choisir un diplome</option>
                         @foreach($diplomes as $diplome)
@@ -41,29 +41,29 @@
                         </select>
                     </div>
                     <div class="form-group col">
-                        <label for="nom">nom</label>
+                        <label for="nom">nom<span class="text-danger">*</span></label>
                         <input type="text" name="nom" class="form-control" id="nom" placeholder="Entrer le nom">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col">
-                        <label for="coefDip">coefficient dans le diplome</label>
+                        <label for="coefDip">coefficient dans le diplome<span class="text-danger">*</span></label>
                         <input type="text" name="coefDip" class="form-control" id="coefDip" placeholder="Entrer le coefficient dans le diplome">
                     </div>
                     <div class="form-group col">
-                        <label for="coefExam">coefficient dans l'examen</label>
+                        <label for="coefExam">coefficient dans l'examen<span class="text-danger">*</span></label>
                         <input type="text" name="coefExam" class="form-control" id="coefExam" min = "1" start ="1" placeholder="Entrer le coefficient dans l'examen">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col">
-                        <label for="coefTd">coefficient dans le TD</label>
+                        <label for="coefTd">coefficient dans le TD<span class="text-danger">*</span></label>
                         <input type="text" name="coefTd" class="form-control" id="coefTd" placeholder="Entrer le coefficient dans le TD">
                     </div>
 
                     <div class="form-group col">
-                        <label for="nbHeures">nombre des heures</label>
+                        <label for="nbHeures">nombre des heures<span class="text-danger">*</span></label>
                         <input type="text" name="nbHeures" class="form-control" id="nbHeures" placeholder="nombre des heures">
                     </div>
                 </div>  

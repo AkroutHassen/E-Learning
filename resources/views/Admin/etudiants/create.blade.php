@@ -24,7 +24,7 @@
                 @endforeach
                 </ul>
               </div>
-              @endif
+              @endif 
               <!-- form start -->
               <form id="quickForm" method="post" action="{{route('etudiant.store')}}">
               @csrf
@@ -32,11 +32,11 @@
                 
                 <div class="row">
                 <div class="form-group col">
-                    <label for="nom">nom</label>
+                    <label for="nom">nom <span class="text-danger">*</span></label>
                     <input type="text" name="nom" class="form-control" id="nom" placeholder="Entrer le nom">
                   </div>
                   <div class="form-group col">
-                    <label for="prenom">prenom</label>
+                    <label for="prenom">prenom<span class="text-danger">*</span></label>
                     <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Entrer le prenom">
                   </div>
                 </div>
@@ -45,7 +45,7 @@
                       <label for="tel">télephone</label>
                       <input type="tel" name="tel" class="form-control" id="tel" placeholder="Entrer le numero de teléphone">
                   </div>
-                  <div class="form-group col">
+                  {{-- <div class="form-group col">
                       <label for="Diplome">Diplome</label>
                       <select id="Diplome" class="form-control" name="codeDip">
                       <option value="{{null}}" selected >Choisir un diplome</option>
@@ -53,7 +53,7 @@
                           <option value="{{$diplome->id}}">{{$diplome->nom}}</option>
                         @endforeach
                       </select>
-                  </div>
+                  </div> --}}
                 
                 
                   {{-- <div class="form-group col">
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="form-group col">
-                      <label for="email">email</label>
+                      <label for="email">email<span class="text-danger">*</span></label>
                       <input type="email" name="email" class="form-control" id="email" placeholder="Entrer l'email">
                     </div>
                 </div>
@@ -92,12 +92,12 @@
                 </div>
                 <div class="row " >
                 <div class="form-group col">
-                    <label for="login">login</label>
+                    <label for="login">login<span class="text-danger">*</span></label>
                     <input type="text" name="login" class="form-control" id="login" placeholder="Entrer le login">
                   </div>
 
                   <div class="form-group col">
-                    <label for="mdp">Mot de passe</label>
+                    <label for="mdp">Mot de passe<span class="text-danger">*</span></label>
                     <input type="password" name="mdp" class="form-control" id="mdp" placeholder="Entrer le mot de passe">
                   </div>
                 </div>

@@ -37,7 +37,7 @@
                   
                   <div class="row">
                     <div class="form-group col">
-                      <label for="Diplome">Diplome</label>
+                      <label for="Diplome">Diplome<span class="text-danger">*</span></label>
                       <select id="Diplome" class="form-control" name="codeDip">
                       <option  value="{{null}}">Choisir un diplome</option>
                         @foreach($diplomes as $diplome)
@@ -55,7 +55,7 @@
                       </select>
                     </div>
                     <div class="form-group col">
-                      <label for="num">Numéro groupes</label>
+                      <label for="num">Numéro groupes<span class="text-danger">*</span></label>
                       <input type="text" name="id" class="form-control" id="id"  value="{{$groupe->id}}">
                     </div>
                   </div>

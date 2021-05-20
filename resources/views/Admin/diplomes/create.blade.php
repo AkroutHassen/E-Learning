@@ -31,7 +31,7 @@
                 <div class="card-body text-capitalize">
                 
                   <div class="form-group">
-                    <label for="nom">nom</label>
+                    <label for="nom">nom<span class="text-danger">*</span></label>
                     <input type="text" name="nom" class="form-control" id="nom" placeholder="Entre le nom">
                   </div>
             

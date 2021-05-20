@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Enseignant;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\User;
 
 class EnseignantsController extends Controller
 {
@@ -41,9 +43,30 @@ class EnseignantsController extends Controller
         $request->validate(['nom'=>'required','prenom'=>'required',
                             'email'=>'required','login'=>'required','mdp'=>'required',
                             'grade'=>'required','numBureau'=>'required']);
-        Enseignant::create($request->all());
-        // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Marc']);
-
+        $mdp = Hash::make($request->input('mdp'));
+        
+        DB::table('users')->insert([
+            [ 
+            'login' =>$request->input('login'),
+            'email' => $request->input('email'),
+            'password' => $mdp,
+            'role' => '1'
+            ]
+        ]);
+        $user_id = DB::table('users')->where('login', $request->input('login'))->first()->id;
+    //    dd($id[0]);
+        // Enseignant::create(['id'=> $id[0]]);
+        DB::table('enseignants')->insert([
+            [ 'id' => $user_id ,
+                'nom'=> $request->input('nom'),
+                'prenom'=> $request->input('prenom'),
+                'email'=> $request->input('email'),
+                'login'=> $request->input('login'),
+                'grade'=> $request->input('grade'),
+                'numBureau'=> $request->input('numBureau'),
+                'tel'=> $request->input('tel')
+            ]
+        ]);
         return redirect()->route('enseignant.index')->with('success','Enseignant ' . $request->input('nom').' '. $request->input('prenom') .' a ajouté avec succéss');
     
     }
@@ -80,10 +103,27 @@ class EnseignantsController extends Controller
     public function update(Request $request, Enseignant $enseignant)
     {
         $request->validate(['nom'=>'required','prenom'=>'required',
-                            'email'=>'required','login'=>'required','mdp'=>'required',
+                            'email'=>'required','login'=>'required',
                             'grade'=>'required','numBureau'=>'required']);
         // $etudiant = Etudiant::findOrFail($id);
-        $enseignant->update($request->all());
+        if ($request->input('mdp') != null)
+        {
+            $mdp = Hash::make($request->input('mdp'));
+            DB::table('users')
+            ->where('id', $enseignant->id)
+            ->update(['login' =>$request->input('login'),
+            'email' => $request->input('email'),
+            'password' => $mdp
+            ]);
+            
+        }else {
+            DB::table('users')
+            ->where('id', $enseignant->id)
+            ->update(['login' =>$request->input('login'),
+            'email' => $request->input('email'),
+            ]);
+        }
+        $enseignant->update($request->except('mdp'));
         return redirect()->route('enseignant.index')->with('success','L\'Enseignant ' . $request->input('nom').' '. $request->input('prenom') .' est modifié avec succéss');
     
     }
@@ -95,7 +135,8 @@ class EnseignantsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Enseignant $enseignant)
-    {
+    {   $user = User::find($enseignant->id);
+        $user->delete();
         $enseignant->delete();
         return redirect()->route('enseignant.index')->with('success','L\'Enseignant est supprimé avec succéss');
     

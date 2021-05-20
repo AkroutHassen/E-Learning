@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Groupe;
 use App\Models\Diplome;
+use App\Models\Intervenir;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,7 +45,7 @@ class GroupesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $request->validate(['codeDip'=>'required','id'=>'required']);
         Groupe::create($request->all());
         return redirect()->route('groupe.index')->with('success','Groupe ' . $request->input('codeDip').' td'. $request->input('id') .' a été ajouté avec succéss');
@@ -56,9 +58,12 @@ class GroupesController extends Controller
      * @param  \App\Models\Groupes  $groupes
      * @return \Illuminate\Http\Response
      */
-    public function show(Groupes $groupes)
-    {
-        
+    public function show($id)
+    {   $tableau = explode(",",$id);
+        $groupeid = $tableau[0];
+        $groupeDip = $tableau[1];
+        $etudiants = Etudiant::where('codeDip',$groupeDip)->where('numGroupe',$groupeid)->get();
+        return view('Admin.groupes.show',compact('etudiants')) ;
     }
 
     /**
