@@ -10,6 +10,6 @@ class Groupe extends Model
         'codeDip','id'
     ];
     public function diplome(){
-        return $this->belongsTo(diplome::class);
+        return $this->belongsTo(diplome::class,'codeDip');
     }
 }

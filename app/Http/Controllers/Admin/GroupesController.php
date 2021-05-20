@@ -20,11 +20,7 @@ class GroupesController extends Controller
     {
         $groupes=Groupe::all();
         $diplomes=Diplome::all();
-        $nomDip=[];
-        foreach ($diplomes as $diplome) {
-            $nomDip[$diplome->id] = $diplome->nom;
-        }
-        return view('Admin.groupes.index',compact(['groupes','nomDip']));
+        return view('Admin.groupes.index',compact(['groupes']));
     }
 
     /**
@@ -48,7 +44,7 @@ class GroupesController extends Controller
     {   
         $request->validate(['codeDip'=>'required','id'=>'required']);
         Groupe::create($request->all());
-        return redirect()->route('groupe.index')->with('success','Groupe ' . $request->input('codeDip').' td'. $request->input('id') .' a été ajouté avec succéss');
+        return redirect()->route('groupe.index')->with('success','Groupe ' . $request->input('codeDip').' TD '. $request->input('id') .' a été ajouté avec succéss');
    
     }
 
@@ -86,22 +82,10 @@ class GroupesController extends Controller
         $groupeid = $tableau[0];
         $groupeDip = $tableau[1];
         $diplomes=Diplome::all();
-        $groupes = Groupe::all();
-        $groupe;
-        foreach($groupes as $gr){
-            if ( $gr->id == $groupeid && $gr->codeDip == $groupeDip){
-                $groupe=$gr;
-                break;
-            }
-                
-        }
+        $groupe = Groupe::where('id',$groupeid)->where('codeDip',$groupeDip)->first();
         return view('Admin.groupes.edit',compact(['groupe','diplomes']));
     }
-    // public function edite($id)
-    // {  $tableau = Groupe::FindorFail($id);
-    //     $groupeDip = $tableau->codeDip;
-    //     return redirect()->route('groupe.edit',[$groupeDip]);
-    // }
+   
 
     /**
      * Update the specified resource in storage.
@@ -121,7 +105,7 @@ class GroupesController extends Controller
         $groupes = Groupe::all();
 
         DB::table('groupes')->where('id', $groupeid)->where('codeDip',$groupeDip)->update(['id'=>$request->input('id'),'codeDip'=>$request->input('codeDip')]);
-        return redirect()->route('groupe.index')->with('success','Le Groupe ' . $request->input('num').' '. $request->input('prenom') .' est modifié avec succéss');
+        return redirect()->route('groupe.index')->with('success','Le Groupe ' . $request->input('num') .' a été modifié avec succéss');
    
     }
 
@@ -134,6 +118,6 @@ class GroupesController extends Controller
     public function destroy(Groupes $groupes)
     {
         $groupe->delete();
-        return redirect()->route('groupe.index')->with('success','Le Groupe est supprimé avec succéss');
+        return redirect()->route('groupe.index')->with('success','Le Groupe a été supprimé avec succéss');
     }
 }

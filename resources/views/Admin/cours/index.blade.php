@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{ $cour->id }}</td>
                                 <td>{{$cour->nom }}</td>
-                                <td>{{ $nomDip[$cour->codeDip] }}</td>
+                                <td>{{ $cour->diplome->nom }}</td>
                                 <td>{{ $cour->nbHeures}}</td>
                                 <td>{{ $cour->coefDip }}</td>
                                 <td> 

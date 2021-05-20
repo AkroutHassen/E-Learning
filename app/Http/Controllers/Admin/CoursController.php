@@ -18,11 +18,8 @@ class CoursController extends Controller
     {
         $cours=Cours::all();
         $diplomes=Diplome::all();
-        $nomDip=[];
-        foreach ($diplomes as $diplome) {
-            $nomDip[$diplome->id] = $diplome->nom;
-        }
-        return view('Admin.cours.index',compact(['cours','nomDip']));
+        
+        return view('Admin.cours.index',compact(['cours']));
     }
 
     /**
@@ -48,7 +45,7 @@ class CoursController extends Controller
             'coefDip'=>'required','coefExam'=>'required','coefTd'=>'required',
             'nbHeures'=>'required']);
         Cours::create($request->all());
-        return redirect()->route('cours.index')->with('success','Cours ' . $request->input('nom') .' a ajouté avec succéss');
+        return redirect()->route('cours.index')->with('success','Cours ' . $request->input('nom') .' a été ajouté avec succéss');
 
     }
 
@@ -89,7 +86,7 @@ class CoursController extends Controller
             'coefDip'=>'required','coefExam'=>'required','coefTd'=>'required',
             'nbHeures'=>'required']);
         $cour->update($request->all());
-        return redirect()->route('cours.index')->with('success','Cours ' . $request->input('nom') .' est modifié avec succéss');
+        return redirect()->route('cours.index')->with('success','Cours ' . $request->input('nom') .' a été modifié avec succéss');
 
     }
 
@@ -102,6 +99,6 @@ class CoursController extends Controller
     public function destroy(Cours $cour)
     {
         $cour->delete();
-        return redirect()->route('cours.index')->with('success','Le Cours est supprimé avec succéss');
+        return redirect()->route('cours.index')->with('success','Le Cours a été supprimé avec succéss');
     }
 }

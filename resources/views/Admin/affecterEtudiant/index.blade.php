@@ -48,7 +48,7 @@
                             @endphp
                             <tr>
                                 <td>{{ $affect->id. '. ' . $affect->nom .' ' . $affect->prenom}}</td>
-                                <td>{{ $affect->codeDip }}</td>
+                                <td>{{ $affect->diplome->nom }}</td>
                                 <td>                                  
                                         <select id="groupe" class="form-control" name="{{'numGroupe'.$i}}">
                                                 <option  value="{{null}}">Choisir un Groupe</option>

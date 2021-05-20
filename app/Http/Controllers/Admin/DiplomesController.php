@@ -39,7 +39,7 @@ class DiplomesController extends Controller
     {
         $request->validate(['nom'=>'required']);
         Diplome::create($request->all());
-        return redirect()->route('diplome.index')->with('success','Diplome ' . $request->input('nom').' '. $request->input('prenom') .' a ajouté avec succéss');
+        return redirect()->route('diplome.index')->with('success','Diplome ' . $request->input('nom').' '. $request->input('prenom') .' a été ajouté avec succéss');
     
     }
 
@@ -76,7 +76,7 @@ class DiplomesController extends Controller
     {
         $request->validate(['nom'=>'required']);
         $diplome->update($request->all());
-        return redirect()->route('diplome.index')->with('success','Le Diplome ' . $request->input('nom').' '. $request->input('prenom') .' est modifié avec succéss');
+        return redirect()->route('diplome.index')->with('success','Le Diplome ' . $request->input('nom').' '. $request->input('prenom') .' a été modifié avec succéss');
 
     }
 
@@ -89,6 +89,6 @@ class DiplomesController extends Controller
     public function destroy(Diplome $diplome)
     {
         $diplome->delete();
-        return redirect()->route('diplome.index')->with('success','Le Diplome est supprimé avec succéss');
+        return redirect()->route('diplome.index')->with('success','Le Diplome a été supprimé avec succéss');
     }
 }

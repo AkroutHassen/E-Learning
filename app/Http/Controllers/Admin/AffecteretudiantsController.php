@@ -86,7 +86,7 @@ class AffecteretudiantsController extends Controller
             ->where('id', $etudiant)
             ->update(['numGroupe' =>$request->input('numGroupe'.$i)]);
         }
-        return redirect()->route('affecter.index')->with('success','Affectation success');
+        return redirect()->route('affecter.index')->with('success','Etudiant affecté avec success');
     }
 
     /**

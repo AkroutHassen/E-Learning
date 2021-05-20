@@ -42,7 +42,7 @@
                           @php
                             $selected = "";
                           @endphp
-                          @if ($diplome->id == $codeDip[$responsabletd->idCours] )
+                          @if ($diplome->id == $responsabletd->cours->codeDip )
                             @php
                               $selected = "selected";
                             @endphp  

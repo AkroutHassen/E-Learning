@@ -10,6 +10,6 @@ class Etudiant extends Model
         'nom','prenom','email','login','tel','numGroupe','adresse','codeDip'
     ];
     public function diplome(){
-        return $this->belongsTo(diplome::class);
+        return $this->belongsTo(diplome::class,'codeDip');
     }
 }

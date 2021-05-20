@@ -34,7 +34,8 @@
                     <tbody>
                         @foreach( $groupes as $groupe)
                             <tr>
-                                <td>{{ $nomDip[$groupe->codeDip] }}</td>
+                                {{-- <td>{{ $nomDip[$groupe->codeDip] }}</td> --}}
+                                <td>{{ $groupe->diplome->nom }}</td>
                                 <td>{{ $groupe->id}}</td>
                                 <td> 
                                     <form method="post" action="{{route('groupe.destroy',$groupe->id)}}">

@@ -35,10 +35,9 @@
                     <tbody>
                         @foreach( $responsablecours as $responsablecour)
                             <tr>
-                                <td>{{ $nomDip[$responsablecour->idCours] }}</td>
-                                <td>{{ $nomCours[$responsablecour->idCours]}}</td>
-                                <td>{{ $nomEns[$responsablecour->idEns]}}</td>
-                                
+                                <td>{{$responsablecour->cours->diplome->nom}}</td>
+                                <td>{{$responsablecour->cours->nom}}</td>
+                                <td>{{$responsablecour->enseignant->nom}}</td> 
                                 <td>
                                 <?php $msg = [$responsablecour->idEns,$responsablecour->idCours];
                                     $msgs = implode(",",$msg);

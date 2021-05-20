@@ -30,28 +30,11 @@ class ResponsabletdsController extends Controller
             }
                 
         }
-        $cours = Cours::all();
-        $diplomes=Diplome::all();
-        $enseignants = Enseignant::all();
-        $nomDip=[];
-        foreach ($cours as $cour) {
-            foreach ($diplomes as $diplome) {
-                if ($cour->codeDip == $diplome->id )
-                $nomDip[$cour->id] = $diplome->nom;
-            }
-        }
+      
         
-        $nomEns=[];
-        foreach($enseignants as $enseigant){
-            $nomEns[$enseigant->id] =$enseigant->id .'. ' .$enseigant->nom .' '.$enseigant->prenom ;
-        }
-        $nomCours=[];
-        foreach($cours as $cour){
-            $nomCours[$cour->id] = $cour->nom;
-        }
 
         // dd($responsabletds);
-        return view('Admin.responsabletds.index',compact('responsabletds','nomDip','nomEns','nomCours'));
+        return view('Admin.responsabletds.index',compact('responsabletds'));
 
 
     }
@@ -109,7 +92,7 @@ class ResponsabletdsController extends Controller
     public function store(Request $request)
     {
         Intervenir::create($request->all());
-        return redirect()->route('responsabletd.index')->with('success','Enseignant ' . $request->input('nom') .' a ajouté avec succéss');
+        return redirect()->route('responsabletd.index')->with('success','La responsabilité a été ajouté avec succéss');
 
     }
 
@@ -188,21 +171,8 @@ class ResponsabletdsController extends Controller
         $idCours = $tableau[1];
         $resp = $tableau[2];
         $diplomes = Diplome::all();
-       
-        $codeDip=[];
-    
-            foreach ($diplomes as $diplome) {
-                if ($idCours == $diplome->id )
-                $codeDip[$idCours] = $diplome->id;
-            }
-        
-        $responsables = Intervenir::all();
-        $responsabletd;
-        foreach ($responsables as $responsable) {
-            if($responsable->idCours == $idCours && $responsable->idEns == $idEns && $responsable->resp == $resp){
-                $responsabletd = $responsable;
-            }
-        }
+        $codeDip = Cours::where('id',$idCours)->get('codeDip');
+        $responsabletd = Intervenir::where('idCours',$idCours)->where('idEns',$idEns)->where('resp',$resp)->first();
         return view('Admin.responsabletds.editd',compact(['diplomes','responsabletd','codeDip']));
     
         }
@@ -230,7 +200,7 @@ class ResponsabletdsController extends Controller
                 'idcours'=>$request->input('idCours'),
                 'resp'=>$request->input('resp')]);
         
-        return redirect()->route('responsabletd.index')->with('success','L\'Enseignant est modifié avec succéss');
+        return redirect()->route('responsabletd.index')->with('success','La responsabilité a été modifié avec succéss');
    
     }
 
@@ -243,13 +213,10 @@ class ResponsabletdsController extends Controller
         $idCours = $tableau[1];
         $resp = $tableau[2];
 
-        // DB::table('intervenirs')
-        //     ->where('idEns', $idEns)->where('idCours',$idCours)
-        //     ->where('resp',$resp)
-        //     ->update(['codeDip'=>$request->input('codeDip')]);
+        
             $msg = [$idEns,$idCours,$resp,$request->input('codeDip')];
             $msgs = implode(",",$msg);
-        return redirect()->route('responsabletd.edit',[$msgs,$idEns])->with('success','L\'Enseignant est modifié avec succéss');
+        return redirect()->route('responsabletd.edit',[$msgs,$idEns])->with('success','La responsabilité a été modifié avec succéss');
    
     }
 
@@ -265,11 +232,8 @@ class ResponsabletdsController extends Controller
         $idEns = $tableau[0];
         $idCours = $tableau[1];
         $resp = $tableau[2];
-        // DB::table('intervenirs')->delete([
-        //     ['idEns' => $idEns, 'idCours' => $idCours,'resp' => $resp]
-        // ]);
         DB::table('intervenirs')->where('idEns', $idEns)->where('idCours', $idCours)->where('resp', $resp)->delete();
-        return redirect()->route('responsabletd.index')->with('success','L\'Enseignant est supprimé avec succéss');
+        return redirect()->route('responsabletd.index')->with('success','La responsabilité a été supprimé avec succéss');
 
     }
 }

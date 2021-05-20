@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Cours;
-use App\Models\Diplome;
-use App\Models\Groupe;
+// use App\Models\Cours;
+// use App\Models\Diplome;
+// use App\Models\Groupe;
 
 /*
 |--------------------------------------------------------------------------

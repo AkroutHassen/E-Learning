@@ -4,7 +4,7 @@
     Liste des responsables des TDs
 @endsection
 @section('titrepage')
-    responsable TDs
+    Responsable TDs
 @endsection
 @section('content')
 <div class="row">
@@ -36,10 +36,10 @@
                     <tbody>
                         @foreach( $responsabletds as $responsabletd)
                             <tr>
-                                <td>{{ $nomDip[$responsabletd->idCours] }}</td>
-                                <td>{{ $nomCours[$responsabletd->idCours]}}</td>
+                                <td>{{ $responsabletd->cours->diplome->nom }}</td>
+                                <td>{{ $responsabletd->cours->nom}}</td>
                                 <td>{{ $responsabletd->resp }}</td>
-                                <td>{{ $nomEns[$responsabletd->idEns]}}</td>
+                                <td>{{ $responsabletd->enseignant->nom}}</td>
                                 
                                 
                                 <td> 

@@ -19,38 +19,9 @@ class ResponsablecoursController extends Controller
      */
     public function index()
     {  
-        $responsables = Intervenir::all();
-        $i=0;
-        $responsablecours=[];
-        foreach ($responsables as $responsable){
-            if($responsable->resp == "0" ){
-                $responsablecours[$i] = $responsable;
-                $i++;
-            }
-                
-        }
        
-        $cours = Cours::all();
-        $diplomes=Diplome::all();
-        $enseignants = Enseignant::all();
-        $nomDip=[];
-        foreach ($cours as $cour) {
-            foreach ($diplomes as $diplome) {
-                if ($cour->codeDip == $diplome->id )
-                $nomDip[$cour->id] = $diplome->nom;
-            }
-        }
-        
-        $nomEns=[];
-        foreach($enseignants as $enseigant){
-            $nomEns[$enseigant->id] =$enseigant->id .'. ' . $enseigant->nom .' '.$enseigant->prenom ;
-        }
-        $nomCours=[];
-        foreach($cours as $cour){
-            $nomCours[$cour->id] = $cour->nom;
-        }
-
-        return view('Admin.responsablecours.index',compact('responsablecours','nomDip','nomEns','nomCours'));
+        $responsablecours = Intervenir::where('resp','0')->get();
+        return view('Admin.responsablecours.index',compact('responsablecours'));
     }
 
     /**
@@ -70,14 +41,7 @@ class ResponsablecoursController extends Controller
     public function create($msg)
     {
         $cours=Cours::all();
-        $coursdip=[];
-        $i=0;
-        foreach($cours as $cour){
-            if($cour->codeDip == $msg)
-                $coursdip[$i] = $cour;
-                $i++;
-        }
-        
+        $coursdip = Cours::where('codeDip',$msg)->get();
         $enseignants=Enseignant::all();
         return view('Admin.responsablecours.create',compact(['diplomes','enseignants','coursdip']));
   
@@ -105,8 +69,7 @@ class ResponsablecoursController extends Controller
         DB::table('intervenirs')->insert([
             ['idEns' => $request->input('idEns'), 'idCours' => $request->input('idCours'),'resp' => '0']
         ]);
-        // dd('bonjour');
-        return redirect()->route('responsablecours.index')->with('success','Enseignant a ajouté avec succéss');
+        return redirect()->route('responsablecours.index')->with('success','La responsabilité a été ajouté avec succéss');
     }
 
     /**
@@ -139,34 +102,22 @@ class ResponsablecoursController extends Controller
         if(isset($tableau[2])){
             $codeDip = $tableau[2];
         } else {
-            // $codeDip;
-        
-            foreach ($diplomes as $diplome) {
-                if ($idCours == $diplome->id ){
-                    $codeDip= $diplome->id;
-                    break;
-                }
+            $codeDip;
+            $codeDip = Cours::where('id',$idCours)->first('codeDip');
+            
+            // foreach ($diplomes as $diplome) {
+            //     if ($idCours == $diplome->id ){
+            //         $codeDip= $diplome->id;
+            //         break;
+            //     }
                     
-            }
+            // }
         }
         
         
-        
-        $coursdip=[];
-        $i=0;
-        foreach($cours as $cour){
-            if($cour->codeDip == $codeDip)
-                $coursdip[$i] = $cour;
-                $i++;
-        }
-        
+        $coursdip = Cours::where('codeDip',$codeDip->codeDip)->get();
         $responsables = Intervenir::all();
-        $responsablecour;
-        foreach ($responsables as $responsable) {
-            if($responsable->idCours == $idCours && $responsable->idEns == $idEns){
-                $responsablecour = $responsable;
-            }
-        }
+        $responsablecour = Intervenir::where('idCours',$idCours)->where('idEns',$idEns)->first();
         return view('Admin.responsablecours.edit',compact(['responsablecour','enseignants','coursdip','responsables']));
     
     }
@@ -217,7 +168,7 @@ class ResponsablecoursController extends Controller
             ->update(['idEns'=>$request->input('idEns'),
                 'idcours'=>$request->input('idCours')]);
         
-        return redirect()->route('responsablecours.index')->with('success','L\'Enseignant est modifié avec succéss');
+        return redirect()->route('responsablecours.index')->with('success','La responsabilité a été modifié avec succéss');
    
     }
     public function updated(Request $request,$id)
@@ -234,7 +185,7 @@ class ResponsablecoursController extends Controller
         //     ->update(['codeDip'=>$request->input('codeDip')]);
             $msg = [$idEns,$idCours,$request->input('codeDip')];
             $msgs = implode(",",$msg);
-        return redirect()->route('responsablecours.edit',[$msgs,$idEns])->with('success','L\'Enseignant est modifié avec succéss');
+        return redirect()->route('responsablecours.edit',[$msgs,$idEns])->with('success','La responsabilité a été modifié avec succéss');
    
     }
 
@@ -253,7 +204,7 @@ class ResponsablecoursController extends Controller
         //     ['idEns' => $idEns, 'idCours' => $idCours,'resp' => $resp]
         // ]);
         DB::table('intervenirs')->where('idEns', $idEns)->where('idCours', $idCours)->where('resp', '0')->delete();
-        return redirect()->route('responsablecours.index')->with('success','L\'Enseignant est supprimé avec succéss');
+        return redirect()->route('responsablecours.index')->with('success','La responsabilité a été supprimé avec succéss');
 
     }
 }

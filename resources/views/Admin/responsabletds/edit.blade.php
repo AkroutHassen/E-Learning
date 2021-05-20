@@ -4,7 +4,7 @@
     Modifier des responsables
 @endsection
 @section('titrepage')
-    responsables
+    Responsables
 @endsection
 @section('content')
 <div class="row">
@@ -13,7 +13,7 @@
         <!-- jquery validation -->
             <div class="card-primary">
               <div class="card-header">
-                <h3 class="card-title">Voulez vous modifier <small>{{-- --}}</small> ?</h3>
+                <h3 class="card-title">Voulez vous modifier <small>les responsables</small> ?</h3>
               </div>
               <!-- /.card-header -->
               @if($errors->any())

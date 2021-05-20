@@ -10,6 +10,6 @@ class Cours extends Model
         'nom','desc','codeDip','coefExam','coefTd','coefDip','nbHeures'
     ];
     public function diplome(){
-        return $this->belongsTo(diplome::class);
+        return $this->belongsTo(diplome::class,'codeDip');
     }
 }
