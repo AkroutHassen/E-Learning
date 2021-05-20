@@ -50,11 +50,6 @@
                     </select>
                     
                 </div>
-                {{-- <div class="form-group col">
-                    <label for="responsable">responsable</label>
-                    <input type = "text" id="responsable" class="form-control" name="resp" value="cours" disabled>
-                    
-                </div> --}}
             </div>
  
                   
