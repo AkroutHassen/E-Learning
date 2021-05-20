@@ -26,13 +26,13 @@
           <br>
           <div class="text-center">
             @if ($inscri)
-              <form method="POST" action="{{route('inscription.destroy', $cour->id)}}">
+              <form method="POST" action="{{route('etudiant.inscription.destroy', $cour->id)}}">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Se désinscrire</button>
               </form>
             @else
-              <form method="POST" action="{{route('inscription.store')}}">
+              <form method="POST" action="{{route('etudiant.inscription.store')}}">
                 @csrf
                 <input type="hidden" name="idCours" value="{{ $cour->id }}">
                 <input type="hidden" name="idEtu" value="{{ session('id') }}">
@@ -95,7 +95,7 @@
               <th>Description</th>
               <th>Nombre de video</th>
               <th>Temps requis</th>
-              <th>Accéder</th>
+              <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -122,7 +122,7 @@
               <th>Description</th>
               <th>Nombre de video</th>
               <th>Temps requis</th>
-              <th>Accéder</th>
+              <th>Action</th>
           </tr>
           </tfoot>
         </table>

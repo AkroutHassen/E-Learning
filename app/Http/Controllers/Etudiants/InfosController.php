@@ -28,13 +28,7 @@ class InfosController extends Controller
      */
     public function index()
     {
-        // $notes = Note::all();
-        // $diplomes = Diplome::all();
-        // foreach ($diplomes as $diplome)
-        // {
-        //     $nomDip[$diplome->id] = $diplome->nom;
-        // }
-        // return view('Etudiants.cours.index', compact('cours', 'nomDip'));
+        //
     }
 
     /**
@@ -76,10 +70,10 @@ class InfosController extends Controller
      * @param  \App\Models\Etudiant  $etudiant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Etudiant $etud)
+    public function edit(Etudiant $etudiant)
     {
-        echo $etud;
-        //return view('Etudiants.infos.edit', compact('etudiant'));
+        $etudiant = Etudiant::where('id', session('id'))->first();
+        return view('Etudiants.infos.edit', compact('etudiant'));
     }
 
     /**
@@ -91,18 +85,34 @@ class InfosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(['codeDip'=>'required']);
-        //$etudiant->update($request->all());
-        if($request->input('codeDip') == 'null')
-            $var = null;
+        if(!empty($request->codeDip))
+        {
+            $request->validate(['codeDip'=>'required']);
+            //$etudiant->update($request->all());
+            if($request->input('codeDip') == 'null')
+                $var = null;
+            else
+                $var = $request->input('codeDip');
+            DB::table('etudiants')->where('id', $id)->update(['codeDip' => $var]);
+            $codeDip = Etudiant::where('id', $id)->get('codeDip');
+            session(['codeDip' => $codeDip[0]->codeDip]);
+            if($codeDip[0]->codeDip == null)
+                Inscription::where('idEtu', session('id'))->delete();
+            return redirect()->route("etudiant.diplome.index")->with('success', 'Inscription modifié avec succés !');    
+        }
         else
-            $var = $request->input('codeDip');
-        DB::table('etudiants')->where('id', $id)->update(['codeDip' => $var]);
-        $codeDip = Etudiant::where('id', $id)->get('codeDip');
-        session(['codeDip' => $codeDip[0]->codeDip]);
-        if($codeDip[0]->codeDip == null)
-            Inscription::where('idEtu', session('id'))->delete();
-        return redirect()->route("diplome.index")->with('success', 'Inscription modifié avec succés !');
+        {
+            if($request->input('tel') == '')
+                $varTel = null;
+            else
+                $varTel = $request->input('tel');
+            if($request->input('adresse') == '')
+                $varAdresse = null;
+            else
+                $varAdresse = $request->input('adresse');
+            Etudiant::where('id', session('id'))->update(['tel' => $varTel, 'adresse' => $varAdresse]);
+            return redirect()->route('etudiant.infos.show', session('id'))->with('success', 'Données mis à jour avec succés !');
+        }
     }
 
     /**

@@ -60,7 +60,7 @@
                       {{$nbCours}}
                     </td>
                     <td>
-                      <form method="POST" action="{{ route('infos.update', session('id')) }}">
+                      <form method="POST" action="{{ route('etudiant.infos.update', session('id')) }}">
                         @csrf
                         @method('PUT')
                         @if (null !== session('codeDip'))

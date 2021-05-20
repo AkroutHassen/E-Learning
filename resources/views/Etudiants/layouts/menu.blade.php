@@ -44,7 +44,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('infos.show', session('id'))}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('etudiant.infos.show', session('id'))}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Infos personnelles</p>
                 </a>
@@ -61,7 +61,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('diplome.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('etudiant.diplome.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Liste des diplomes</p>
                 </a>
@@ -84,13 +84,13 @@
               ?>
               @if (null !== session('codeDip'))
                 @php
-                    $href = route('cours.index');
+                    $href = route('etudiant.cours.index');
                 @endphp             
               @else
                 @php
                   //alert("Priere de vous s'inscrire dans un diplome");
                   //echo "<script>alert('Priere de vous s\'inscrire dans un diplome');</script>";
-                  $href = route('diplome.index');
+                  $href = route('etudiant.diplome.index');
                 @endphp  
               @endif
               <li class="nav-item">
@@ -112,13 +112,13 @@
             <ul class="nav nav-treeview">
               @if (null !== session('codeDip'))
                 @php
-                    $href = route('note.show', session('id'));
+                    $href = route('etudiant.note.show', session('id'));
                 @endphp             
               @else
                 @php
                   //alert("Priere de vous s'inscrire dans un diplome");
                   //echo "<script>alert('Priere de vous s\'inscrire dans un diplome');</script>";
-                  $href = route('diplome.index');
+                  $href = route('etudiant.diplome.index');
                 @endphp  
               @endif
               <li class="nav-item">

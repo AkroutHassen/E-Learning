@@ -9,6 +9,9 @@
 @endsection
 
 @section('contenu')
+<form action="{{ route('etudiant.infos.update', session('id')) }}" method="POST">
+@csrf
+@method('PUT')
 <div class="row">
   <div class="card card-primary card-outline col m-3">
     <div class="card-body box-profile col">
@@ -31,7 +34,7 @@
         </li>
         <li class="list-group-item">
           <b>Telephone</b> <a class="float-right">
-            @php if($etudiant->tel !== null ) echo $etudiant->tel; else echo 'Non défini'; @endphp
+            <input type="text" name="tel" id="tel" class="form-control" value="{{$etudiant->tel}}">
           </a>
         </li>
       </ul>
@@ -59,7 +62,7 @@
       <strong><i class="fas fa-map-marker-alt mr-1"></i> Adresse</strong>
 
       <p class="text-muted">
-        @php if($etudiant->adresse !== null ) echo $etudiant->adresse; else echo 'Non défini'; @endphp
+        <input type="text" name="adresse" id="adresse" class="form-control" value="{{$etudiant->adresse}}">
       </p>
 
       <hr>
@@ -83,7 +86,7 @@
   <!-- /.card -->
 </div>
 <div class="text-center">
-  <a href="{{ route('infos.edit', session('id')) }}" class="btn btn-primary"><b>Modifier</b></a>
+  <input class="btn btn-lg btn-primary" type="submit" value="Confirmer les changements">
 </div>
-
+</form>
 @endsection

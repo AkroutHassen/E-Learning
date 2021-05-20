@@ -13,7 +13,7 @@
           <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Etudiant fouleni</a>
+          <a href="#" class="d-block">{{ session('prenom') }}</a>
         </div>
       </div>
 
@@ -44,7 +44,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{--route('infos.show')--}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('enseignant.infos.show', session('id'))}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Infos personnelles</p>
                 </a>
@@ -55,15 +55,15 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Diplomes
+                Espace des cours
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('diplome.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('enseignant.cours.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Liste des diplomes</p>
+                  <p>Liste des cours</p>
                 </a>
               </li>
             </ul>
@@ -72,15 +72,15 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Cours
+                Espace des TDs
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('cours.index')}}" class="nav-link">
+                <a href="{{route('enseignant.tds.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Liste des cours</p>
+                  <p>Liste des TDs</p>
                 </a>
               </li>
             </ul>
@@ -95,9 +95,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('diplome.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('note.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Relevé des notes</p>
+                  <p>Insérer les notes</p>
                 </a>
               </li>
             </ul>

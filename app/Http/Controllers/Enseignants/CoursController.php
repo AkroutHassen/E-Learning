@@ -5,10 +5,22 @@ namespace App\Http\Controllers\Enseignants;
 use App\Http\Controllers\Controller;
 use App\Models\Cours;
 use App\Models\Diplome;
+use App\Models\Intervenir;
 use Illuminate\Http\Request;
 
 class CoursController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +28,10 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours = Cours::all();
-        $diplomes = Diplome::all();
-        return view('Etudiants.cours.index', compact('cours', 'diplomes'));
+        $interventions = Intervenir::where('idEns', session('id'))->where('resp', 0)->get('idCours');
+        foreach ($interventions as $intervention)
+            $nomDip[$intervention->idCours] = Diplome::where('id', $intervention->cours->codeDip)->first('nom');
+        return view('Enseignants.cours.index', compact('interventions', 'nomDip'));
     }
 
     /**
@@ -50,17 +63,8 @@ class CoursController extends Controller
      */
     public function show(Cours $cour)
     {
-        $diplomes = Diplome::all();
-        foreach ($diplomes as $diplome)
-        {
-            if ($diplome->id == $cour->codeDip)
-            {
-                $nomDip = $diplome->nom;
-                return view('Etudiants.cours.show', compact('cour', 'nomDip'));
-            }
-            else
-                echo 'false';
-        }
+        $nomDip = Diplome::where('id', $cour->codeDip)->first('nom');
+        return view('Enseignants.cours.show', compact('cour', 'nomDip'));
     }
 
     /**

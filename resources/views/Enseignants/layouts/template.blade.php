@@ -19,9 +19,9 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-  @include('Etudiants.layouts.header')
+  @include('Enseignants.layouts.header')
   <!-- Main Sidebar Container -->
-  @include('Etudiants.layouts.menu')
+  @include('Enseignants.layouts.menu')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -42,10 +42,8 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            
                 @yield('contenu')
-            </div>
-            <!-- /.card -->
             
           </div>
           <!-- /.col -->
@@ -57,7 +55,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  @include('Etudiants.layouts.footer')
+  @include('Enseignants.layouts.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

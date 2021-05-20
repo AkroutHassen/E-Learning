@@ -60,20 +60,20 @@
                         @endif
                       @endforeach
                       @if ($inscriBool)
-                        <form method="POST" action="{{route('inscription.destroy', $cour->id)}}">
+                        <form method="POST" action="{{route('etudiant.inscription.destroy', $cour->id)}}">
                           @csrf
                           @method('DELETE')
-                          <a href="{{route('cours.show', $cour->id)}}">
+                          <a href="{{route('etudiant.cours.show', $cour->id)}}">
                             <button type="button" class="btn btn-success">Accéder</i></button>
                           </a>
                           <button type="submit" class="btn btn-danger">Se désinscrire</button>
                         </form>
                       @else
-                        <form method="POST" action="{{route('inscription.store')}}">
+                        <form method="POST" action="{{route('etudiant.inscription.store')}}">
                           @csrf
                           <input type="hidden" name="idCours" value="{{ $cour->id }}">
                           <input type="hidden" name="idEtu" value="{{ session('id') }}">
-                          <a href="{{route('cours.show', $cour->id)}}">
+                          <a href="{{route('etudiant.cours.show', $cour->id)}}">
                             <button type="button" class="btn btn-info">Consulter</i></button>
                           </a>
                           <button type="submit" class="btn btn-primary">S'inscrire</i></button>

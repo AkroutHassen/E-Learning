@@ -9,6 +9,11 @@
 @endsection
 
 @section('contenu')
+@if ($msg=Session::get('success'))
+  <div class="alert alert-success">
+    {{$msg}}
+  </div>
+@endif
 <div class="row">
   <div class="card card-primary card-outline col m-4">
     <div class="card-body box-profile col">
@@ -83,7 +88,7 @@
   <!-- /.card -->
 </div>
 <div class="text-center">
-  <a href="{{ route('infos.edit', session('id')) }}" class="btn btn-lg btn-primary mb-4"><b>Modifier</b></a>
+  <a href="{{ route('etudiant.infos.edit', session('id')) }}" class="btn btn-lg btn-primary mb-4"><b>Modifier</b></a>
 </div>
 
 @endsection

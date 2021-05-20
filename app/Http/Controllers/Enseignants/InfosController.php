@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 
 class InfosController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +58,8 @@ class InfosController extends Controller
      */
     public function show(Enseignant $enseignant)
     {
-        //
+        $enseignant = Enseignant::where('id', session('id'))->first();
+        return view('Enseignants.infos.show', compact('enseignant'));
     }
 
     /**
@@ -58,7 +70,8 @@ class InfosController extends Controller
      */
     public function edit(Enseignant $enseignant)
     {
-        //
+        $enseignant = Enseignant::where('id', session('id'))->first();
+        return view('Enseignants.infos.edit', compact('enseignant'));
     }
 
     /**
@@ -70,7 +83,16 @@ class InfosController extends Controller
      */
     public function update(Request $request, Enseignant $enseignant)
     {
-        //
+        if($request->input('tel') == '')
+            $varTel = null;
+        else
+            $varTel = $request->input('tel');
+        if($request->input('numBureau') == '')
+            $varNumBureau = null;
+        else
+            $varNumBureau = $request->input('numBureau');
+            Enseignant::where('id', session('id'))->update(['tel' => $varTel, 'numBureau' => $varNumBureau]);
+        return redirect()->route('enseignant.infos.show', session('id'))->with('success', 'Données mis à jour avec succés !');
     }
 
     /**

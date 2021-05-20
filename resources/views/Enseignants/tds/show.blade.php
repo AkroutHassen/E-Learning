@@ -1,11 +1,11 @@
 @extends('Enseignants.layouts.template')
 
 @section('titre')
-    Cours: {{ $cour->nom }}
+    TD {{$idTD}}: {{ $td->nom }}
 @endsection
 
 @section('titrepage')
-    Cours: {{ $cour->nom }}
+    TD {{$idTD}}: {{ $td->nom }}
 @endsection
 
 @section('contenu')
@@ -18,11 +18,11 @@
         </div>
       @endif
       <div class="widget-user-header bg-info">
-        <h2 class="widget-user-username">Cours: {{ $cour->nom }}</h2>
+        <h2 class="widget-user-username">Cours: {{ $td->nom }}</h2>
         <h5 class="widget-user-desc">Diplome: {{ $nomDip->nom }}</h5>
       </div>
       <div class="card-footer">
-          <p class="text-center font-weight-normal text-justify"><span class="font-weight-bold">Description du cours</span><br>{{ $cour->desc }}</p>
+          <p class="text-center font-weight-normal text-justify"><span class="font-weight-bold">Description du cours</span><br>{{ $td->desc }}</p>
           <br>
           
           <hr>
@@ -30,7 +30,7 @@
           <div class="col-sm-3 border-right">
             <div class="description-block">
               <h5 class="description-header">Nombre d'heures</h5>
-              <span class="description-text">{{$cour->nbHeures}}</span>
+              <span class="description-text">{{$td->nbHeures}}</span>
             </div>
             <!-- /.description-block -->
           </div>
@@ -38,7 +38,7 @@
           <div class="col-sm-3 border-right">
             <div class="description-block">
               <h5 class="description-header">Coefficient du diplome</h5>
-              <span class="description-text">{{$cour->coefDip}}</span>
+              <span class="description-text">{{$td->coefDip}}</span>
             </div>
             <!-- /.description-block -->
           </div>
@@ -46,7 +46,7 @@
           <div class="col-sm-3 border-right">
             <div class="description-block">
               <h5 class="description-header">Coefficient de l'examen</h5>
-              <span class="description-text">{{$cour->coefExam}}</span>
+              <span class="description-text">{{$td->coefExam}}</span>
             </div>
             <!-- /.description-block -->
           </div>
@@ -54,7 +54,7 @@
           <div class="col-sm-3">
             <div class="description-block">
               <h5 class="description-header">Coefficient du TD</h5>
-              <span class="description-text">{{$cour->coefTd}}</span>
+              <span class="description-text">{{$td->coefTd}}</span>
             </div>
             <!-- /.description-block -->
           </div>
@@ -93,7 +93,7 @@
                   <td>{{ rand(2, 5) }}</td>
                   <td>
                     <a href="#">
-                      <button type="button" class="btn btn-success">Déposer documents</i></button>
+                      <button type="button" class="btn btn-success">Déposer Exercices</i></button>
                     </a>
                   </td>
               </tr>

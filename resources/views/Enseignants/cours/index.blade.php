@@ -1,4 +1,4 @@
-@extends('Etudiants.layouts.template')
+@extends('Enseignants.layouts.template')
 
 @section('titre')
     Liste des cours
@@ -19,6 +19,11 @@
           {{$msg}}
         </div>
         @endif
+        @if ($msg=Session::get('warning'))
+        <div class="alert alert-warning">
+          {{$msg}}
+        </div>
+        @endif
 
 
         <!-- /.card-header -->
@@ -29,31 +34,27 @@
                 <th>Diplome</th>
                 <th>Cours</th>
                 <th>Description</th>
+                <th>Prof du cours</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-                @foreach ($cours as $cour)
+                @foreach ($interventions as $intervention)
                 <tr>
                     <td>
-                      @foreach ($diplomes as $diplome)
-                          @if ($diplome->id == $cour->codeDip)
-                              {{$diplome->nom}}
-                          @endif
-                      @endforeach
+                          {{ $nomDip[$intervention->idCours]->nom }}
                     </td>
-                    <td>{{ $cour->nom }}</td>
+                    <td>{{ $intervention->cours->nom }}</td>
                     <td>
-                      <span class="d-inline-block text-truncate" style="max-width: 500px;">{{ $cour->desc }}</span>
+                      <span class="d-inline-block text-truncate" style="max-width: 400px;">{{ $intervention->cours->desc }}</span>
                     </td>
                     <td>
-                      <form method="POST" action="{{--route('cours.inscrire', $cour->id)--}}">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">S'inscrire</i></button>
-                        <a href="{{route('cours.show', $cour->id)}}">
-                          <button type="button" class="btn btn-info">Consulter</i></button>
-                        </a>
-                      </form>
+                      {{ session('prenom') }} {{session('nom')}}
+                    </td>
+                    <td>
+                      <a href="{{route('enseignant.cours.show', $intervention->cours->id)}}">
+                        <button type="button" class="btn btn-success">Accéder</i></button>
+                      </a>
                     </td>
                 </tr>
             @endforeach
@@ -63,6 +64,7 @@
               <th>Code du cours</th>
               <th>Cours</th>
               <th>Description</th>
+              <th>Prof du cours</th>
               <th>Action</th>
             </tr>
             </tfoot>
