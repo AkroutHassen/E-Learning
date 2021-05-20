@@ -82,13 +82,13 @@
                           @php
                             $selected = "";
                           @endphp
-                          @if ('TD ' . $groupe->id == $responsabletd->resp )
+                          @if ($groupe->id == $responsabletd->resp )
                             @php
                               $selected = "selected";
                             @endphp  
                             
                           @endif
-                          <option {{$selected}} value="{{'TD ' . $groupe->id}}">{{'TD ' . $groupe->id}}</option>
+                          <option {{$selected}} value="{{$groupe->id}}">{{'TD ' . $groupe->id}}</option>
                         @endforeach
                             </select>
                         </div>

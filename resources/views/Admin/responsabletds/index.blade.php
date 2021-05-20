@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{{ $responsabletd->cours->diplome->nom }}</td>
                                 <td>{{ $responsabletd->cours->nom}}</td>
-                                <td>{{ $responsabletd->resp }}</td>
+                                <td>{{ 'TD ' . $responsabletd->resp }}</td>
                                 <td>{{ $responsabletd->enseignant->nom}}</td>
                                 
                                 

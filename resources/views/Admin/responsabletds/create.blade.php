@@ -57,7 +57,7 @@
                         <select id="Groupe" class="form-control" name="resp">
                         <option value="{{null}}" selected >Choisir un TD</option>
                         @foreach($groupesdip as $groupe)
-                            <option value="{{'TD '. $groupe->id}}">{{'TD ' . $groupe->id}}</option>
+                            <option value="{{ $groupe->id}}">{{'TD ' . $groupe->id}}</option>
                         @endforeach
                         </select>
                     </div>

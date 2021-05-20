@@ -120,46 +120,18 @@ class ResponsabletdsController extends Controller
         $idEns = $tableau[0];
         $idCours = $tableau[1];
         $resp = $tableau[2];
-        $diplomes = Diplome::all();
-        $enseignants=Enseignant::all();
         $cours=Cours::all();
         $codeDip ;
         
         if(isset($tableau[3])){
             $codeDip = $tableau[3];
         } else {
-            foreach ($diplomes as $diplome) {
-                if ($idCours == $diplome->id ){
-                    $codeDip= $diplome->id;
-                    break;
-                }
-                    
-            }
+            $codeDip = Cours::where('id',$idCours)->first('codeDip');
+           
         }
-        
-        
-        $coursdip=[];
-        $i=0;
-        foreach($cours as $cour){
-            if($cour->codeDip == $codeDip)
-                $coursdip[$i] = $cour;
-                $i++;
-        }
-        $groupes = Groupe::all();
-        $groupesdip=[];
-        $i=0;
-        foreach($groupes as $groupe){
-            if($groupe->codeDip == $codeDip)
-                $groupesdip[$i] = $groupe;
-                $i++;
-        }
-        $responsables = Intervenir::all();
-        $responsabletd;
-        foreach ($responsables as $responsable) {
-            if($responsable->idCours == $idCours && $responsable->idEns == $idEns && $responsable->resp == $resp){
-                $responsabletd = $responsable;
-            }
-        }
+        $coursdip = Cours::where('codeDip',$codeDip->codeDip)->get();
+        $groupesdip = Groupe::where('codeDip',$codeDip->codeDip)->get();
+        $responsabletd = Intervenir::where('idCours',$idCours)->where('idEns',$idEns)->where('resp',$resp)->first();
         return view('Admin.responsabletds.edit',compact(['responsabletd','enseignants','coursdip','responsables','groupesdip']));
     
         }
