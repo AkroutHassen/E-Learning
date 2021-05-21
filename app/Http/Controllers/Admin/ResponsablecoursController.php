@@ -20,7 +20,7 @@ class ResponsablecoursController extends Controller
     public function index()
     {  
        
-        $responsablecours = Intervenir::where('resp','0')->get();
+        $responsablecours = Intervenir::where('resp',0)->get();
         return view('Admin.responsablecours.index',compact('responsablecours'));
     }
 
@@ -105,13 +105,6 @@ class ResponsablecoursController extends Controller
             $codeDip;
             $codeDip = Cours::where('id',$idCours)->first('codeDip');
             
-            // foreach ($diplomes as $diplome) {
-            //     if ($idCours == $diplome->id ){
-            //         $codeDip= $diplome->id;
-            //         break;
-            //     }
-                    
-            // }
         }
         
         

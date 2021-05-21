@@ -21,22 +21,8 @@ class ResponsabletdsController extends Controller
     public function index()
     {
         $responsables = Intervenir::all();
-        $i=0;
-        $responsabletds=[];
-        foreach ($responsables as $responsable){
-            if($responsable->resp[0] != "0" ){
-                $responsabletds[$i] = $responsable;
-                $i++;
-            }
-                
-        }
-      
-        
-
-        // dd($responsabletds);
+        $responsabletds = Intervenir::where('resp','<>',0)->get();
         return view('Admin.responsabletds.index',compact('responsabletds'));
-
-
     }
 
     /**
