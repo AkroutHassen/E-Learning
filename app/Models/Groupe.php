@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cours extends Model
+class Groupe extends Model
 {
     protected $fillable = [
-        'nom', 'desc', 'codeDip', 'coefExam', 'coefDip', 'nbHeures'
+        'codeDip', 'id'
     ];
-    public function diplome(){
+
+    public function diplome()
+    {
         return $this->belongsTo(diplome::class, 'codeDip');
     }
 }

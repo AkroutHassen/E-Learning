@@ -39,8 +39,10 @@ Route::get('enseignant/tds/{td}', 'Enseignants\TDsController@show')->name('ensei
 
 //Route::resource('enseignant/cours', 'Enseignants\CoursController');
 //Route::resource('enseignant/infos', 'Enseignants\InfosController');
-Route::resource('enseignant/note', 'Enseignants\NotesController');
-Route::get('enseignant/notes/{note}', 'Enseignants\NotesController@choix')->name('enseignant.note.choix');
+Route::get('enseignant/note', 'Enseignants\NotesController@index')->name('enseignant.note.index');
+Route::post('enseignant/note/{id}/{resp}', 'Enseignants\NotesController@store')->name('enseignant.note.store');
+Route::put('enseignant/note/{note}/{resp}', 'Enseignants\NotesController@update')->name('enseignant.note.update');
+Route::get('enseignant/notes/{idCours}/{resp}', 'Enseignants\NotesController@choix')->name('enseignant.note.choix');
 // Route::resource('enseignant/inscription', 'Enseignants\InscriptionsController');
 
 Route::get('/', 'HomeController@index')->name('home');

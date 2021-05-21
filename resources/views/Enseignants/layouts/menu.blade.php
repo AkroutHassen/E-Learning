@@ -36,7 +36,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
                 <i class="right fas fa-angle-left"></i>
@@ -53,7 +53,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Espace des cours
                 <i class="right fas fa-angle-left"></i>
@@ -70,7 +70,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-pencil-ruler"></i>
               <p>
                 Espace des TDs
                 <i class="right fas fa-angle-left"></i>
@@ -87,7 +87,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-bullseye"></i>
               <p>
                 Notes
                 <i class="right fas fa-angle-left"></i>
@@ -95,7 +95,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('note.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
+                <a href="{{route('enseignant.note.index')}}" class="nav-link"> <?php //{{route('article.create')}}?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Insérer les notes</p>
                 </a>

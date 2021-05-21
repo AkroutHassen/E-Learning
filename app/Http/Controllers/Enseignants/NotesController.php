@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Enseignants;
 use App\Http\Controllers\Controller;
 use App\Models\Note;
 use App\Models\Intervenir;
-use App\Models\Diplome;
+use App\Models\Inscription;
+use App\Models\Cours;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
 
 class NotesController extends Controller
@@ -29,17 +31,24 @@ class NotesController extends Controller
     public function index()
     {
         $interventions = Intervenir::where('idEns', session('id'))->get();
-        foreach ($interventions as $intervention)
-            $nomDip[$intervention->idCours] = Diplome::where('id', $intervention->cours->codeDip)->first('nom');
-        return view('Enseignants.notes.index', compact('interventions', 'nomDip'));
+        return view('Enseignants.notes.index', compact('interventions'));
     }
 
-    public function choix($choix)
+    public function choix($idCours, $resp)
     {
         $interventions = Intervenir::where('idEns', session('id'))->get();
-        foreach ($interventions as $intervention)
-            $nomDip[$intervention->idCours] = Diplome::where('id', $intervention->cours->codeDip)->first('nom');
-        return view('Enseignants.notes.index', compact('choix', 'interventions', 'nomDip'));
+        $inscriptions = Inscription::where('idCours', $idCours)->get('idEtu');
+        $cour = Cours::where('id', $idCours)->first('nom');
+        $etudiants = Etudiant::whereIn('id', $inscriptions)->get();
+        $notes = [];
+        foreach($etudiants as $etudiant)
+        {
+            if (Note::where('idCours', $idCours)->where('idEtu', $etudiant->id)->exists())
+                $notes[$etudiant->id] = Note::where('idCours', $idCours)->where('idEtu', $etudiant->id)->first();
+        }
+        if ($resp != 0)
+            $etudiants = Etudiant::whereIn('id', $inscriptions)->where('numGroupe', $resp)->get();
+        return view('Enseignants.notes.index', compact('idCours', 'interventions', 'etudiants', 'cour', 'resp', 'notes'));
     }
 
     /**
@@ -58,9 +67,11 @@ class NotesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id, $resp)
     {
-        //
+        $request->validate(['idEtu'=>'required', 'idCours'=>'required']);
+        Note::create($request->all());
+        return redirect()->route("enseignant.note.choix", [$request->input('idCours'), $resp])->with('success', 'Note affecté avec succés !');
     }
 
     /**
@@ -92,9 +103,19 @@ class NotesController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Note $note)
+    public function update(Request $request, Note $note, $resp)
     {
-        //
+        if(null != $request->input('noteExam'))
+            Note::where('idEtu', $request->input('idEtu'))->where('idCours', $request->input('idCours'))->update(['noteExam' => $request->input('noteExam')]);
+        elseif(null != $request->input('noteTd'))
+            Note::where('idEtu', $request->input('idEtu'))->where('idCours', $request->input('idCours'))->update(['noteTd' => $request->input('noteTd')]);
+        $checkNote = Note::where('idEtu', $request->input('idEtu'))->where('idCours', $request->input('idCours'))->first();
+        if(isset($checkNote->noteExam) && isset($checkNote->noteTd))
+        {
+            $moy = ($checkNote->noteExam * $checkNote->cours->coefExam + $checkNote->noteTd * $checkNote->cours->coefTd) / ($checkNote->cours->coefExam + $checkNote->cours->coefTd);
+            Note::where('idEtu', $checkNote->idEtu)->where('idCours', $checkNote->idCours)->update(['moy' => $moy]);
+        }
+        return redirect()->route("enseignant.note.choix", [$checkNote->idCours, $resp])->with('success', 'Note affecté avec succés !');
     }
 
     /**
