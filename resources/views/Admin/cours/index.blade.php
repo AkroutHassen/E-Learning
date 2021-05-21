@@ -1,0 +1,78 @@
+@extends('Admin.layouts.template')
+
+@section('titre')
+    Liste des cours
+@endsection
+@section('titrepage')
+    Cours
+@endsection
+@section('content')
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header row">
+                <h3 class="card-title col-10">Liste des cours</h3>
+                <a href="{{route('cours.create')}}" class='col-2'> <button type = "button" class= "btn btn-primary pl-2 pr-2" >Ajouter un cours</button></a>
+            </div>
+            <!-- /.card-header -->
+            @if($msg=Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{$msg}}</p>
+                </div>
+            @endif
+
+            
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr class="text-capitalize">
+                        <th>Code</th>
+                        <th>nom</th>
+                        <th>Nom Diplome</th>
+                        <th>nombre Heures</th>
+                        <th>coefficient diplome</th>
+                        <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach( $cours as $cour)
+                            <tr>
+                                <td>{{ $cour->id }}</td>
+                                <td>{{$cour->nom }}</td>
+                                <td>{{ $cour->diplome->nom }}</td>
+                                <td>{{ $cour->nbHeures}}</td>
+                                <td>{{ $cour->coefDip }}</td>
+                                <td> 
+                                    <form method="post" action="{{route('cours.destroy',$cour->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{route('cours.show',$cour->id)}}"> <button type = "button" class= "btn btn-primary"><i class="far fa-eye"></i></button></a>
+                                    <a href="{{route('cours.edit',$cour->id)}}"> <button type = "button" class= "btn btn-primary"><i class="fa fa-edit"></i></button></a>  
+                                        <button type = "submit" class= "btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                    <tr class="text-capitalize">
+                        <th>Code</th>
+                        <th>nom</th>
+                        <th>Nom Diplome</th>
+                        <th>nombre Heures</th>
+                        <th>coefficient diplome</th>
+                        <th>action</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>          
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+    
+    
+@endsection
