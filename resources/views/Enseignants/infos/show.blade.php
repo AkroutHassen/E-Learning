@@ -19,7 +19,7 @@
     <div class="card-body box-profile col">
       <div class="text-center">
         <img class="profile-user-img img-fluid img-circle"
-            src="{{asset('../../dist/img/user4-128x128.jpg')}}"
+            src="{{asset('dist/img/avatar.png')}}"
             alt="User profile picture">
       </div>
 

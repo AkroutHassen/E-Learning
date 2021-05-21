@@ -34,7 +34,8 @@ class HomeController extends Controller
                 session(['email' => $user->email]);
                 session(['login' => $user->login]);
                 session(['role' => $user->role]);
-                return view('Admin.layouts.template', compact('user'));
+                return redirect()->route('welcome');
+                //return view('Admin.layouts.template', compact('user'));
                 break;
             case '1':
                 $userData = Enseignant::where('id', $user->id)->first();

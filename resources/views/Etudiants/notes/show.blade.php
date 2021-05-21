@@ -31,8 +31,8 @@
                 <tr>
                     <td>{{ $nomDip[0]->nom }}</td>
                     <td>{{ $note->cours->nom }}</td>
-                    <td>{{ $note->noteExam }}</td>
                     <td>{{ $note->noteTd }}</td>
+                    <td>{{ $note->noteExam }}</td>
                     <td>{{ $note->moy }}</td>
                 </tr>
             @endforeach

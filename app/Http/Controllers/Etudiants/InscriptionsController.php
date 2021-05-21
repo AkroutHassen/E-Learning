@@ -47,9 +47,14 @@ class InscriptionsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['idCours'=>'required', 'idEtu'=>'required']);
-        Inscription::create($request->all());
-        return redirect()->route('etudiant.cours.show', $request->idCours)->with('success', 'Inscription effectué avec succés !');
+        if(session('numGroupe') !== null)
+        {
+            $request->validate(['idCours'=>'required', 'idEtu'=>'required']);
+            Inscription::create($request->all());
+            return redirect()->route('etudiant.cours.show', $request->idCours)->with('success', 'Inscription effectué avec succés !');
+        }
+        else
+            return redirect()->route('etudiant.cours.index')->with('warning', 'Veuillez patientez jusqu\'au etre affecté à un groupe');
     }
 
     /**

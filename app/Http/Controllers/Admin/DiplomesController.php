@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 
 class DiplomesController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +26,8 @@ class DiplomesController extends Controller
      */
     public function index()
     {
-        //
+        $diplomes=Diplome::all();
+        return view('Admin.diplomes.index',compact('diplomes'));
     }
 
     /**
@@ -25,7 +37,7 @@ class DiplomesController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.diplomes.create');
     }
 
     /**
@@ -36,7 +48,10 @@ class DiplomesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['nom'=>'required']);
+        Diplome::create($request->all());
+        return redirect()->route('diplome.index')->with('success','Diplome ' . $request->input('nom').' '. $request->input('prenom') .' a été ajouté avec succéss');
+    
     }
 
     /**
@@ -58,7 +73,7 @@ class DiplomesController extends Controller
      */
     public function edit(Diplome $diplome)
     {
-        //
+        return view('Admin.diplomes.edit',compact('diplome'));
     }
 
     /**
@@ -70,7 +85,10 @@ class DiplomesController extends Controller
      */
     public function update(Request $request, Diplome $diplome)
     {
-        //
+        $request->validate(['nom'=>'required']);
+        $diplome->update($request->all());
+        return redirect()->route('diplome.index')->with('success','Le Diplome ' . $request->input('nom').' '. $request->input('prenom') .' a été modifié avec succéss');
+
     }
 
     /**
@@ -81,6 +99,7 @@ class DiplomesController extends Controller
      */
     public function destroy(Diplome $diplome)
     {
-        //
+        $diplome->delete();
+        return redirect()->route('diplome.index')->with('success','Le Diplome a été supprimé avec succéss');
     }
 }

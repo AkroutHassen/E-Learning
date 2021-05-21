@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('titre')</title>
+<link rel="icon" type="image/png" href="{{asset('dist/img/isims.png')}}">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,6 +16,7 @@
   <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  @yield('link')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -40,17 +42,8 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-                @yield('contenu')
-            </div>
-            <!-- /.card -->
-            
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
+        @yield('content')
+        
       </div>
       <!-- /.container-fluid -->
     </section>
@@ -89,6 +82,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- Page specific script -->
+@yield('script')
 <script>
   $(function () {
     $("#example1").DataTable({
