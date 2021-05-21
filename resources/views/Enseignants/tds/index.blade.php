@@ -54,7 +54,7 @@
                       {{ session('prenom') }} {{session('nom')}}
                     </td>
                     <td>
-                      <a href="{{route('enseignant.tds.show', $intervention->cours->id)}}">
+                      <a href="{{route('enseignant.tds.show', [$intervention->cours->id, $intervention->resp])}}">
                         <button type="button" class="btn btn-success">Accéder</i></button>
                       </a>
                     </td>

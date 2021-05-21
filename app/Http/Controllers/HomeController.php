@@ -53,6 +53,7 @@ class HomeController extends Controller
                 }
                 session(['id' => $userData->id]);
                 session(['prenom' => $userData->prenom]);
+                session(['nom' => $userData->nom]);
                 session(['email' => $userData->email]);
                 session(['login' => $userData->login]);
                 session(['grade' => $userData->grade]);
@@ -74,6 +75,7 @@ class HomeController extends Controller
                 }
                 session(['id' => $userData->id]);
                 session(['prenom' => $userData->prenom]);
+                session(['nom' => $userData->nom]);
                 session(['email' => $userData->email]);
                 session(['login' => $userData->login]);
                 session(['numGroupe' => $userData->numGroupe]);

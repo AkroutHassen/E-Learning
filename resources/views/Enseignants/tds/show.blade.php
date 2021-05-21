@@ -5,7 +5,7 @@
 @endsection
 
 @section('titrepage')
-    TD {{$idTD}}: {{ $td->nom }}
+    TD {{$resp}}: {{ $td->nom }}
 @endsection
 
 @section('contenu')

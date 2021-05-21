@@ -37,7 +37,7 @@
                             <tr>
                                 <td>{{$responsablecour->cours->diplome->nom}}</td>
                                 <td>{{$responsablecour->cours->nom}}</td>
-                                <td>{{$responsablecour->enseignant->nom}}</td> 
+                                <td>{{$responsablecour->enseignant->id .'. '. $responsablecour->enseignant->nom .' '. $responsablecour->enseignant->prenom}}</td> 
                                 <td>
                                 <?php $msg = [$responsablecour->idEns,$responsablecour->idCours];
                                     $msgs = implode(",",$msg);

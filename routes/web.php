@@ -35,7 +35,7 @@ Route::put('enseignant/infos/{info}', 'Enseignants\InfosController@update')->nam
 Route::get('enseignant/cours', 'Enseignants\CoursController@index')->name('enseignant.cours.index');
 Route::get('enseignant/cours/{cour}', 'Enseignants\CoursController@show')->name('enseignant.cours.show');
 Route::get('enseignant/tds', 'Enseignants\TDsController@index')->name('enseignant.tds.index');
-Route::get('enseignant/tds/{td}', 'Enseignants\TDsController@show')->name('enseignant.tds.show');
+Route::get('enseignant/tds/{td}/{resp}', 'Enseignants\TDsController@show')->name('enseignant.tds.show');
 
 //Route::resource('enseignant/cours', 'Enseignants\CoursController');
 //Route::resource('enseignant/infos', 'Enseignants\InfosController');

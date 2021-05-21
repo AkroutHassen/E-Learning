@@ -61,11 +61,12 @@ class TDsController extends Controller
      * @param  \App\Models\Intervenir  $intervenir
      * @return \Illuminate\Http\Response
      */
-    public function show($idTD)
+    public function show($idTD, $resp)
     {
         $td = Cours::where('id', $idTD)->first();
         $nomDip = Diplome::where('id', $td->codeDip)->first('nom');
-        return view('Enseignants.tds.show', compact('td', 'nomDip', 'idTD'));
+        // $resp = Intervenir::where('idEns',session('id'))->where('idCours', $idTD)->first('resp');
+        return view('Enseignants.tds.show', compact('td', 'nomDip', 'idTD', 'resp'));
     }
 
     /**
