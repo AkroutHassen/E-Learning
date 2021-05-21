@@ -48,3 +48,7 @@ Route::resource('admin/responsabletd','Admin\ResponsabletdsController');
 Route::get('admin/responsabletd/create/{n}','Admin\ResponsabletdsController@create')->name('responsabletd.create');
 Route::put('admin/responsabletd/{n}/updated','Admin\ResponsabletdsController@updated')->name('responsabletd.updated');
 Route::get('admin/responsabletd/{n}/editd','Admin\ResponsabletdsController@editd')->name('responsabletd.editd');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
