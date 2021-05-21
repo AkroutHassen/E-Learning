@@ -107,7 +107,6 @@ class ResponsablecoursController extends Controller
             
         }
         
-        
         $coursdip = Cours::where('codeDip',$codeDip->codeDip)->get();
         $responsables = Intervenir::all();
         $responsablecour = Intervenir::where('idCours',$idCours)->where('idEns',$idEns)->first();

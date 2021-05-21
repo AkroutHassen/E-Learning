@@ -108,7 +108,7 @@ class ResponsabletdsController extends Controller
         $resp = $tableau[2];
         $cours=Cours::all();
         $codeDip ;
-        
+        $enseignants = Enseignant::all();
         if(isset($tableau[3])){
             $codeDip = $tableau[3];
         } else {
